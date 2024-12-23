@@ -1,0 +1,118 @@
+
+#footer {
+    background: rgb(104, 206, 104);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: white;
+}
+
+.container {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    height: auto;
+}
+
+#footer h3 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#footer .footer-content {
+    padding-left: px;
+    margin-top: 10px;
+    text-align: center;
+    margin-left: 100px;
+
+}
+
+#footer .footer-content address p {
+    margin-top: 10px;
+}
+
+#footer .footer-content p a {
+    padding-left: 20px;
+    text-align: center;
+    color: white;
+}
+
+#footer .footer-content ul {
+    text-align: center;
+}
+
+#footer .list a {
+    padding: 0;
+    color: white;
+}
+
+#footer .list li {
+    text-align: center;
+    list-style-type: none;
+    padding: 4px;
+    position: relative;
+}
+
+#footer .list li::before {
+    
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 100%;
+    width: 0;
+    height: 2px;
+    background: #f18930;
+    transition: width 0.5s;
+}
+
+#footer .list li:hover::before {
+    width: 70px;
+}
+
+#footer .social-icons {
+    text-align: center;
+    padding-right: 50px;
+}
+
+#footer .social-icons li {
+    display: inline-block;
+    text-align: center;
+    padding: 5px;
+}
+#footer .social-icons a i{
+    color: white;
+}
+
+#footer .social-icons a:hover i {
+    /* Ensure this contrasts with the background */
+    color: #3033f1; 
+}
+
+#footer .bottom-bar {
+    border: none;
+    border-top: 1px solid rgb(255, 255, 255, .3);
+    text-align: center;
+    padding: 10px;
+    margin-top: 50px;
+    width: 50%;
+    margin: 10px auto;
+    margin-bottom: 0;
+}
+
+#footer .bottom-bar p {
+    color: #343434;
+    font-size: 16px;
+    padding: 7px;
+    font-size: bold;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-content {
+        width: 100%;
+        text-align: center;
+    }
+}

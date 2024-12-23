@@ -1,0 +1,107 @@
+*
+#footer {
+    background: #decccc;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: white;
+}
+
+.container {
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    /* Ensures responsiveness */
+    flex-wrap: wrap;
+}
+
+#footer h3 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#footer .footer-content p {
+    padding-left: 20px;
+    text-align: center;
+}
+
+#footer .footer-content ul {
+    text-align: center;
+}
+
+#footer .list {
+    padding: 0;
+}
+
+#footer .list li {
+    width: auto;
+    text-align: center;
+    list-style-type: none;
+    padding: 7px;
+    position: relative;
+}
+
+#footer .list li::before {
+    content: '';
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 100%;
+    width: 0;
+    height: 2px;
+    background: #f18930;
+    transition: width 0.5s;
+}
+
+#footer .list li:hover::before {
+    width: 70px;
+}
+
+#footer .social-icons {
+    text-align: center;
+    padding: 0;
+}
+
+#footer .social-icons li {
+    display: inline-block;
+    text-align: center;
+    padding: 5px;
+}
+
+#footer .social-icons a i {
+    color: white;
+    font-size: 25px;
+    transition: color 0.3s;
+}
+
+#footer .social-icons a:hover i {
+    color: #f18930; /* Ensure this contrasts with the background */
+}
+
+#footer .bottom-bar {
+    background: #f18930;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 50px;
+}
+
+#footer .bottom-bar p {
+    color: #343434;
+    margin: 0;
+    font-size: 16px;
+    padding: 7px;
+}
+
+/* Add hover effect for anchor tags */
+#footer a:hover {
+    color: #f18930;
+    text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-content {
+        width: 100%;
+        text-align: center;
+    }
+}

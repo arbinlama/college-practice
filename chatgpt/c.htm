@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register Options</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f9;
+    }
+
+    .container {
+      text-align: center;
+      position: relative;
+    }
+
+    .register-btn {
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007BFF;
+      color: white;
+      cursor: pointer;
+    }
+
+    .register-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .role-options {
+      position: absolute;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      background: white;
+      border: 1px solid #ddd;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      overflow: hidden;
+      z-index: 10;
+    }
+
+    .role-options button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      background: white;
+      color: #333;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .role-options button:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* Add some animation to the dropdown */
+    .role-options.show {
+      display: block;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(-50%) scaleY(0);
+      }
+      to {
+        transform: translateX(-50%) scaleY(1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button class="register-btn">Register</button>
+    <div class="role-options">
+      <button class="user-register">User Registration</button>
+      <button class="admin-register">Admin Registration</button>
+    </div>
+  </div>
+
+  <script>
+    const registerBtn = document.querySelector('.register-btn');
+    const options = document.querySelector('.role-options');
+
+    registerBtn.addEventListener('click', () => {
+      // Toggle visibility with class change for animation effect
+      options.classList.toggle('show');
+    });
+
+    // Close the dropdown if clicked outside
+    window.addEventListener('click', (e) => {
+      if (!registerBtn.contains(e.target) && !options.contains(e.target)) {
+        options.classList.remove('show');
+      }
+    });
+  </script>
+</body>
+</html>

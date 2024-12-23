@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* General Navigation Styles */
+nav {
+  padding: 0 50px;
+  width: 100%;
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar-one {
+  background-color: #097969;
+  color: white;
+  height: 40px;
+  cursor: pointer;
+}
+.left > div + div,
+.right > div {
+  margin-left: 40px;
+}
+.left > div:hover,
+.right > div:hover {
+  color: black;
+  transition: all 0.5s;
+}
+span {
+  margin-left: 5px;
+}
+.navbar-second {
+  background-color: white;
+  height: 70px;
+  position: sticky;
+  top: 0;
+}
+.logo {
+  text-transform: uppercase;
+  font-size: 24px;
+  cursor: pointer;
+  color: #097969;
+}
+
+/* Navigation Links */
+li {
+  list-style: none;
+}
+a {
+  text-transform: capitalize;
+  text-decoration: none;
+  font-size: 16px;
+  margin-left: 30px;
+  color: #097969;
+}
+
+/* Active and Hover Styles */
+a.active,
+a:hover {
+  background: #1b9bff;
+  transition: 0.5s;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/* Background Section */
+section {
+  min-height: 100vh;
+  background: url("/image/kagura.png") no-repeat;
+  background-size: cover;
+}
