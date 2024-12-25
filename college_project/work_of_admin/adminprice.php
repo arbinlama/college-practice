@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Price List</title>
+    <link rel="icon" href="../image/ficon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <style>
         * {
@@ -14,24 +15,28 @@
             list-style: none;
             box-sizing: border-box;
         }
+
         body {
-            font-family: "montserrat", sans-serif;
+            font-family: "Montserrat", sans-serif;
         }
 
         .tbl {
             width: 90%;
-            margin: auto;
-            max-height: 1000px; /* Set max height */
-            overflow: auto; /* Enable scrolling */
+            margin: 20px auto;
+            max-height: 800px;
+            overflow-y: auto;
+            position: relative;
         }
 
         .table {
             width: 100%;
             margin-top: 0;
             border-collapse: collapse;
+            position: relative;
         }
 
-        .table th, .table td {
+        .table th,
+        .table td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: center;
@@ -84,20 +89,10 @@
             margin: 0 5px;
         }
 
-        nav ul  a {
+        nav ul a {
             color: black;
             font-size: 20px;
             padding: 7px 13px;
-        }
-        .icon:hover {
-            color: red;
-            transform: scale(1.2);
-            margin: 5px;
-        }
-
-        .icon1:hover {
-            color: red;
-            transform: scale(1.5);
         }
 
         @media (max-width: 1050px) {
@@ -106,6 +101,7 @@
                 padding-left: 0;
                 font-size: 16px;
             }
+
             nav ul {
                 padding: 0;
                 margin: 0;
@@ -113,17 +109,23 @@
                 justify-content: center;
                 flex-wrap: wrap;
             }
-            nav ul  a {
+
+            nav ul a {
                 font-size: 16px;
                 padding-left: 5%;
             }
+
             nav ul a {
                 margin: 5px;
             }
-            .table, thead, tbody {
+
+            .table,
+            thead,
+            tbody {
                 width: 100%;
             }
-            nav ul  a {
+
+            nav ul a {
                 font-size: 15px;
                 display: flex;
                 align-items: center;
@@ -131,10 +133,68 @@
                 padding: 10px;
                 color: black;
             }
-            nav ul  a i {
+
+            nav ul a i {
                 margin-right: 5px;
             }
+        }
 
+        
+        @media (max-width: 1050px) {
+            nav h2 {
+                text-align: center;
+                padding-left: 0;
+                font-size: 16px;
+            }
+            
+            nav ul {
+                padding: 0;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul a {
+                font-size: 16px;
+                padding-left: 5%;
+            }
+            
+            nav ul a {
+                margin: 5px;
+            }
+            
+            .table,
+            thead,
+            tbody {
+                width: 100%;
+            }
+            
+            nav ul a {
+                font-size: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 10px;
+                color: black;
+            }
+            
+            nav ul a i {
+                margin-right: 5px;
+            }
+        }
+        
+        ul a:hover {
+            color: red;
+        }
+
+        .icon:hover {
+            color: red;
+            transform: scale(1.2);
+        }
+        .icon1:hover {
+            color: red;
+            transform: scale(1.5);
         }
     </style>
 </head>
@@ -142,7 +202,7 @@
     <nav class="navbar">
         <h2>Daily Price List - <span id="current"></span></h2>
         <ul >
-            <a class='icon1' href="../work_of_admin/view.html"><i class="fa fa-home"></i></a>
+            <a class='icon1' href="../adminindex/admindashboard.html"><i class="fa fa-home"></i></a>
             <a class='icon' href="../work_of_admin/price_detail/index.html">Insert Price</a>
         </ul>
     </nav>

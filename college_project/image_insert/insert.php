@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Upload</title>
+    <link rel="icon" href="../image/ficon.png" type="image/x-icon">
     <style>
         body {
             display: flex;
@@ -77,7 +78,7 @@
         <br>
         <button type="submit" name="submit">Submit</button>
         <a href="view.php">View Data</a>
-        <a href="../work_of_admin/view.html">Back</a>
+        <a href="../adminindex/admindashboard.html">Back</a>
     </form>
 </body>
 </html>

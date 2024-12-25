@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farmer Training</title>
+    <link rel="icon" href="../image/ficon.png" type="image/x-icon">
     <style>
         * {
             box-sizing: border-box;
@@ -199,7 +200,7 @@
                  </section>
                  <a href='../work_of_admin/trainingUpdate.php?id=$id' class='btn'>Update</a>
                  <a href='../work_of_admin/trainingDelete.php?id=$id' class='btn btn-danger'>Delete</a>
-                 <a href='../work_of_admin/view.html' class='btn'>Home</a>
+                 <a href='../adminindex/admindashboard.html' class='btn'>Home</a>
                  <a href='../work_of_admin/TaboutMore.php?id=$id' class='btn'>About Training</a>
                  <hr> 
                 ";

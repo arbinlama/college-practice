@@ -43,7 +43,7 @@
 <body>
     <h2>This is a section of tools view</h2>
     <table>
-        <a href="../view.html" class="home">Back</a>
+        <a href="../../adminindex/admindashboard.html" class="home">Back</a>
         <tr>
             <th>S.N</th>
             <th>Photo</th>

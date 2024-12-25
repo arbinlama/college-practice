@@ -1,12 +1,14 @@
 <?php include "conn.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Price List</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="aboutus.css">
+    <link rel="icon" href="../../image/ficon.png" type="image/x-icon">
     <style>
         * {
             padding: 0;
@@ -15,24 +17,28 @@
             list-style: none;
             box-sizing: border-box;
         }
+
         body {
-            font-family: "montserrat", sans-serif;
+            font-family: "Montserrat", sans-serif;
         }
 
         .tbl {
             width: 90%;
-            margin: auto;
-            max-height: 1000px; /* Set max height */
-            overflow: auto; /* Enable scrolling */
+            margin: 20px auto;
+            max-height: 800px;
+            overflow-y: auto;
+            position: relative;
         }
 
         .table {
             width: 100%;
             margin-top: 0;
             border-collapse: collapse;
+            position: relative;
         }
 
-        .table th, .table td {
+        .table th,
+        .table td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: center;
@@ -79,13 +85,13 @@
             padding-left: 25%;
         }
 
-        nav ul li {
+        nav ul a {
             display: inline-block;
             line-height: 60px;
             margin: 0 5px;
         }
 
-        nav ul li a {
+        nav ul a {
             color: black;
             font-size: 20px;
             padding: 7px 13px;
@@ -97,6 +103,7 @@
                 padding-left: 0;
                 font-size: 16px;
             }
+
             nav ul {
                 padding: 0;
                 margin: 0;
@@ -104,17 +111,23 @@
                 justify-content: center;
                 flex-wrap: wrap;
             }
-            nav ul li a {
+
+            nav ul a {
                 font-size: 16px;
                 padding-left: 5%;
             }
-            nav ul li {
+
+            nav ul a {
                 margin: 5px;
             }
-            .table, thead, tbody {
+
+            .table,
+            thead,
+            tbody {
                 width: 100%;
             }
-            nav ul li a {
+
+            nav ul a {
                 font-size: 15px;
                 display: flex;
                 align-items: center;
@@ -122,17 +135,72 @@
                 padding: 10px;
                 color: black;
             }
-            nav ul li a i {
+
+            nav ul a i {
                 margin-right: 5px;
             }
         }
+
+        ul a:hover {
+            color: red;
+            transform: scale(1.5);
+        }
+
+        @media (max-width: 1050px) {
+            nav h2 {
+                text-align: center;
+                padding-left: 0;
+                font-size: 16px;
+            }
+
+            nav ul {
+                padding: 0;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            nav ul a {
+                font-size: 16px;
+                padding-left: 5%;
+            }
+
+            nav ul a {
+                margin: 5px;
+            }
+
+            .table,
+            thead,
+            tbody {
+                width: 100%;
+            }
+
+            nav ul a {
+                font-size: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 10px;
+                color: black;
+            }
+
+            nav ul a i {
+                margin-right: 5px;
+            }
+        }
+
+        ul a:hover {
+            color: red;
+        }
     </style>
-    </head>
+</head>
+
 <body>
     <nav class="navbar">
         <h2>Daily Price List - <span id="current"></span></h2>
         <ul>
-            <li><a href="../../userindex/userdashboard.html"><i class="fa fa-home"></i></a></li>
+            <a href="../../userindex/userdashboard.html"><i class="fa fa-home"></i></a>
         </ul>
     </nav>
     <div class="tbl">
@@ -152,7 +220,7 @@
                 $sql = "SELECT * FROM price_tb";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
-                    $sn=1;
+                    $sn = 1;
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>
                                 <td>{$sn}</td>
@@ -162,7 +230,7 @@
                                 <td>{$row['maximum']}</td>
                                 <td>{$row['average']}</td>
                                 </tr>";
-                                $sn++;
+                        $sn++;
                     }
                 } else {
                     echo "<tr><td colspan='7'>No records found</td></tr>";
@@ -181,4 +249,5 @@
         document.getElementById('current').textContent = formattedDate;
     </script>
 </body>
+
 </html>

@@ -62,7 +62,7 @@ body {
     color: #555;
 }
 
-/* Highlight the subtitles */
+
 #about-us div h2 {
     font-size: 22px;
     color: #000;
@@ -71,11 +71,15 @@ body {
 #about-us a {
     display: flex;
     font-size: 30px;
-    justify-content: right;
+    justify-content: center;
     color: black;
 }
+#about-us .home a:hover {
+    color: red;
+    transform: scale(1.5);
+}
 
-/* Make the section responsive */
+
 @media (max-width: 768px) {
     #about-us {
         padding: 15px;

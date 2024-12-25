@@ -16,6 +16,7 @@ if ($result->num_rows > 0) {
     <title>Registration form</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="reg.css">
+    <link rel="icon" href="../image/ficon.png" type="image/x-icon">
     <style>
         body {
             background-image: url('<?php echo $image_path; ?>');

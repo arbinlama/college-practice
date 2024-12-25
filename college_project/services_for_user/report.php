@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Training Registration Table</title>
+    <title>Training Report</title>
+    <link rel="icon" href="../image/ficon.png" type="image/x-icon">
     <style>
         * {
             padding: 0;
@@ -58,6 +59,10 @@
             font-size: 20px;
             padding: 5px 10px;
             border-radius: 3px;
+        }
+        .back:hover {
+            background-color: red;
+            transform: scale(1.2);
         }
         .top {
             display: flex;
