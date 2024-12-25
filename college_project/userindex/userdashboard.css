@@ -178,9 +178,3 @@ span {
     left: 0;
   }
 }
-section {
-  background: url("../image/kagura.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 300vh;
-}

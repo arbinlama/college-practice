@@ -2,35 +2,182 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <title>userdashboard</title>
+  <title>User Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Font Awesome Link for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <link rel="stylesheet" href="userdashboard.css">
   <link rel="stylesheet" href="../footer/footer.css">
   <link rel="icon" href="../image/ficon.png" type="image/x-icon">
+  <style>
+    .top {
+      display: flex;
+      background: #4f4f4f;
+      justify-content: center;
+      height: 40px;
+    }
+    .top p {
+      margin: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+    }
+    .image-container {
+      position: relative;
+      width: 100%;
+    }
+    .image-container img {
+      width: 100%;
+      height: 500px;
+    }
+    .image-container .text {
+      position: absolute;
+      top: 10%; 
+      left: 5%;
+      width: 20%; 
+      height: auto;
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 5px; 
+      line-height: 1.6;
+      background-color: rgba(0, 0, 0, 0.1); 
+    }
+    .text:hover {
+      transform: scale(1.3);
+    }
+    .both {
+    width: 80%;
+     padding: 20px; 
+     margin: 0 auto; 
+     display: flex; 
+     justify-content: center; 
+     align-items: center; 
+     text-align: center;
+     height: 300px; 
+    }
+    .both > div {
+      width: 50%;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 20px;
+      height: 250px;
+
+    }
+    .news {
+      background: rgb(245, 245, 245);
+      height: auto;
+      text-align: left;
+    }
+    .news h1 {
+      text-decoration: underline;
+      padding-left: 20px;
+    }
+    
+    .news ul li {
+      margin-top: 0;
+      list-style-type: disc;
+      padding-left: 40px;
+      list-style-position: inside;
+      line-height: 1.6;
+      font-size: 18px;
+    }
+    .news ul li ul li {
+      list-style-type: circle;
+    }
+
+    .upprog {
+      background: rgb(245, 245, 245);
+      height: auto;
+      text-align: left;
+    }
+    .upprog h1 {
+      text-decoration: underline;
+      padding-left: 20px;
+    }
+    .upprog p {
+      padding-left: 40px;
+      line-height: 1.6;
+      font-size: 18px;
+    }
+    .upprog p strong {
+      padding-right: 50px;
+    }
+    .agritool {
+      width: 80%;
+      padding: 20px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 300px;
+    }
+    .agritool h1 {
+     display: flex;
+     justify-content: start;
+     text-align: left;
+     align-items: start;
+     font-weight: bold;
+    }
+    .agritool > div {
+      width: 50%;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 20px;
+      height: 250px;
+    }
+    .account, .loan{
+      background: rgb(245, 245, 245);
+      height: auto;
+      text-align: left;
+    }
+    .account h1, .loan h1 {
+      display: flex;
+      justify-content: center;
+      font-weight: bold;
+      top: 0;
+    }
+    .account p, .loan p {
+      display: flex;
+      justify-content: center;
+      line-height: 1.6;
+      font-size: 18px;
+    }
+    .account a, .loan a {
+      display: flex;
+      justify-content: center;
+      text-decoration: underline;
+      color: black;
+      font-size: 20px;
+    }
+    .account a:hover,
+    .loan a:hover {
+      color: red;
+      transform: scale(1.2);
+    }
+  </style>
 </head>
 <body>
-  <nav class="navbar-one ">
+  <nav class="navbar-one">
     <div class="left flex">
       <div class="email">
-        <sapn>
+        <span>
           <a href="https://www.gmail.com">
           <i class="fa fa-envelope"></i>
           AgriHub9988@.com</a>
-        </sapn>
+        </span>
       </div>
-
       <div class="phone">
-        <sapn>
+        <span>
           <a href="tel:+0190005006">
           <i class="fa fa-phone-alt"></i>
           +0190005006</a>
-        </sapn>
+        </span>
       </div>
     </div>
-
-    <div class="right ">
+    <div class="right">
       <div class="facebook">
         <a href="http://www.facebook.com">
           <i class="fab fa-facebook"></i>
@@ -55,18 +202,14 @@
   </nav>
   
   <nav class="navbar-second">
-
     <input type="checkbox" id="check">
-
     <label for="check" class="checkbtn">
       <i class="fa fa-bars"></i>
     </label>
-    
     <div class="flog">
       <img src="../image/ficon.png" alt="logo">
       <label class="logo">AgriHub</label>
     </div>
-
     <ul>
       <li><a class="passive" href="../userindex/userdashboard.html">Home</a></li>
       <li><a href="../services_for_user/training.php">Training</a></li>
@@ -77,15 +220,78 @@
       <li><a href="../logout/logout.php">
         <i class="fa fa-user-circle"></i>
       </a></li>
+    </ul>
   </nav>
-  <!-- Section for image -->
-  <section></section>
+
+  <div class="con">
+    <div class="top">
+      <p>Find your state/city's agriculture records and resources on AgriHub</p>
+    </div>
+
+    <div class="image-container">
+      <img src="../image/farmer.jpg" alt="agri">
+      <div class="text">
+        This is about the development. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Architecto tempora quia minima perferendis est blanditiis qui tenetur, corrupti animi,
+        ad sunt pariatur excepturi molestiae porro deserunt aut quas rem ducimus.
+      </div>
+    </div>
+
+    <div class="both">
+
+      <div class="news">
+      <h1>News</h1>
+      <ul>
+        <li>Learn about pay my loan feature </li>
+        <li>Find Agriculture data recovery and resources on AgriHub</li>
+        <li>Learn about new farming skill</li>
+        <li>Inflation reducetion Act:
+          <ul type="circle">
+            <li>Assistance for distressed borrowea</li>
+            <li>Assistance for distressed borrowea</li>
+            <li>Assistance for distressed borrowea</li>
+          </ul>
+        </li>
+      </ul>
+      </div>
+
+      <div class="upprog">
+        <h1>UpComming programs</h1>
+        <p>This is our upcomming programs</p>
+        <p><strong>Jan 8, 2025 </strong>marketing of form and its cops </p>
+        <p><strong>Jan 51, 2025 </strong> Food safety </p>
+      </div>
+
+    </div>
+    <div class="agritool">
+      <h1>AgriHub Tools</h1>
+
+      <div class="account">
+        <h1>Your Agrihub account</h1>
+        <p>Access secure self-service business tools like managing loans viewing farmers records</p>
+        <a href="#">Create a new account</a>
+      </div>
+
+      <div class="loan">
+        <h1>Apply for loan</h1>
+        <p>where you can complete your application and submit it for processing.</p>
+        <a href="#">Apply for a Farmer loan</a>
+      </div>
+
+      <div class="insurance">
+        <h1></h1>
+      </div>
+    </div>
+
+
+  </div>
+
   <div id="footer"></div>
   <script>
     fetch("../footer/ufooter.html")
         .then(response => response.text())
         .then(data => document.getElementById('footer').innerHTML = data)
         .catch(error => console.error('Error loading footer:', error));
-</script>
+  </script>
 </body>
 </html>

@@ -9,7 +9,157 @@
   <link rel="stylesheet" href="index.css">
   <link rel="stylesheet" href="../footer/footer.css">
   <link rel="icon" href="../image/ficon.png" type="image/x-icon">
+  <style>
+    .top {
+      display: flex;
+      background: #4f4f4f;
+      justify-content: center;
+      height: 40px;
+    }
+    .top p {
+      margin: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+    }
+    .image-container {
+      position: relative;
+      width: 100%;
+    }
+    .image-container img {
+      width: 100%;
+      height: 500px;
+    }
+    .image-container .text {
+      position: absolute;
+      top: 10%; 
+      left: 5%;
+      width: 20%; 
+      height: auto;
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 5px; 
+      line-height: 1.6;
+      background-color: rgba(0, 0, 0, 0.1); 
+    }
+    .text:hover {
+      transform: scale(1.3);
+    }
+    .both {
+    width: 80%;
+     padding: 20px; 
+     margin: 0 auto; 
+     display: flex; 
+     justify-content: center; 
+     align-items: center; 
+     text-align: center;
+     height: 300px; 
+    }
+    .both > div {
+      width: 50%;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 20px;
+      height: 250px;
 
+    }
+    .news {
+      background: rgb(245, 245, 245);
+      height: auto;
+      text-align: left;
+    }
+    .news h1 {
+      text-decoration: underline;
+      padding-left: 20px;
+    }
+    
+    .news ul li {
+      margin-top: 0;
+      list-style-type: disc;
+      padding-left: 40px;
+      list-style-position: inside;
+      line-height: 1.6;
+      font-size: 18px;
+    }
+    .news ul li ul li {
+      list-style-type: circle;
+    }
+
+    .upprog {
+      background: rgb(245, 245, 245);
+      height: auto;
+      text-align: left;
+    }
+    .upprog h1 {
+      text-decoration: underline;
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+    .upprog p {
+      padding-left: 40px;
+      line-height: 1.6;
+      font-size: 18px;
+    }
+    .upprog p strong {
+      padding-right: 50px;
+    }
+    .agritool {
+      width: 80%;
+      padding: 20px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 300px;
+    }
+    .agritool h1 {
+     display: flex;
+     justify-content: start;
+     text-align: left;
+     align-items: start;
+     font-weight: bold;
+    }
+    .agritool > div {
+      width: 50%;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 20px;
+      height: 250px;
+    }
+    .account, .loan, .insurance {
+      background: rgb(245, 245, 245);
+      height: auto;
+      text-align: left;
+    }
+    .account h1, .loan h1, .insurance h1 {
+      display: flex;
+      justify-content: center;
+      font-weight: bold;
+      top: 0;
+    }
+    .account p, .loan p, .insurance p {
+      display: flex;
+      justify-content: center;
+      line-height: 1.6;
+      font-size: 18px;
+    }
+    .account a, .loan a, .insurance a {
+      display: flex;
+      justify-content: center;
+      text-decoration: underline;
+      color: black;
+      font-size: 20px;
+    }
+    .account a:hover,
+    .loan a:hover,
+    .insurance a:hover {
+      color: red;
+      transform: scale(1.2);
+    }
+  </style>
 </head>
 <body>
   <header class="navbar-one">
@@ -60,8 +210,71 @@
     </ul>
   </nav>
   
-  <!-- Section for image -->
-  <section></section>
+  <div class="con">
+    <div class="top">
+      <p>Find your state/city's agriculture resources on AgriHub</p>
+    </div>
+
+    <div class="image-container">
+      <img src="../image/farmer.jpg" alt="agri">
+      <div class="text">
+        This is about the development. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Architecto tempora quia minima perferendis est blanditiis qui tenetur, corrupti animi,
+        ad sunt pariatur excepturi molestiae porro deserunt aut quas rem ducimus.
+      </div>
+    </div>
+
+    <div class="both">
+
+      <div class="news">
+      <h1>News</h1>
+      <ul>
+        <li>Learn about pay my loan feature </li>
+        <li>Find Agriculture data recovery and resources on AgriHub</li>
+        <li>Learn about new farming skill</li>
+        <li>Inflation reducetion Act:
+          <ul type="circle">
+            <li>Assistance for distressed borrowea</li>
+            <li>Assistance for distressed borrowea</li>
+            <li>Assistance for distressed borrowea</li>
+          </ul>
+        </li>
+      </ul>
+      </div>
+
+      <div class="upprog">
+        <h1>UpComming programs</h1>
+        <p>This is our upcomming programs</p>
+        <p><strong>Jan 8, 2025 </strong>marketing of form and its cops </p>
+        <p><strong>Jan 51, 2025 </strong> Food safety </p>
+      </div>
+
+    </div>
+    <div class="agritool">
+      <h1>AgriHub Tools</h1>
+
+      <div class="account">
+        <h1>Your Agrihub account</h1>
+        <p>Access secure self-service business tools like managing loans viewing farmers records</p>
+        <a href="../register/reg.php">Create a new account</a>
+      </div>
+
+      <div class="loan">
+        <h1>About loans</h1>
+        <p>where you can find complete detail about government loan and its policy</p>
+        <a href="https://doacrop.gov.np/public/uploads/file/Plan%20and%20policies%20related%20to%20the%20agroecosystem-99527.pdf">Read More</a>
+      </div>
+
+      <div class="insurance">
+        <h1>About Insurance</h1>
+        <p>We support farmer for claming insurance</p>
+        <a href="">Read More</a>
+      </div>
+    </div>
+
+
+  </div>
+
   
   <div id="footer2"></div>
   
