@@ -1,41 +1,167 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Training</title>
-    <link rel="stylesheet" href="../../college practice/college project/work of admin/training.css">
-</head>
-<body>
-    <div class="container">
-        <h3><a href="../adminindex/admindashboard.html">Home</a></h3>
-        <h1>Farmer Training</h1>
-        <h2>Farmer training is the core of New Entry's work and provides farmers with the knowledge and experience they need to grow a commercial agricultural business.</h2>
-        <p>We are here to help you launch a new farm business and succeed in their business. Here is a description of the training we provide regularly so that you can take advantage of all that we have to offer.</p>
-      
-        <section>
-            <nav>
-                <ul>
-                    <li>
-                        <h1>Sustainable Farming Practices</h1>
-                    </li>
-                    <li>
-                        <h3>An introductory workshop for those who are not sustainable in Farming</h3>
-                    </li>
-                </ul>
-            </nav>
-        </section>
-        <div class="flex">
-            <div class="list">
-                <p>Free 2 hour workshop</p>
-                <p>Online 5:30-700 PM</p>
-                <p>Every 6 week</p>
-                <p>Click here to learn more</p>
-            </div>
-            <div class="divider"></div>
-            
-            <img src="../../image/dragon_1.jpg" alt="training image loading" class="image">
-        </div>
-    </div>
-</body>
-</html>
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: "Montserrat", sans-serif;
+  }
+  nav {
+    background: white;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+  
+  .navbar-one, .left, .right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-one {
+    background-color: green;
+    color: white;
+    height: 40px;
+    cursor: pointer;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .left > div + div,
+  .right > div {
+    margin-left: 40px;
+  }
+  
+  .navbar-one .left {
+    flex: 1;
+    justify-content: flex-start;
+    padding-left: 150px;
+  }
+  
+  .navbar-one .right {
+    flex: 1;
+    justify-content: flex-end;
+    padding-right: 300px;
+  }
+  
+  .left > div:hover,
+  .right > div:hover {
+    color: black;
+    transition: all 0.5s;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    color: black;
+    font-size: 25px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px hotpink, 2px 2px 4px yellow;
+  }
+  
+  .logo img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+  
+  nav ul {
+    display: flex;
+    margin-right: 30px;
+  }
+  
+  nav ul li {
+    display: inline-block;
+    line-height: 80px;
+    margin: 0 10px;
+  }
+  
+  nav ul li a {
+    color: black;
+    font-size: 17px;
+    padding: 7px 13px;
+    border-radius: 3px;
+    text-transform: capitalize;
+  }
+  
+  a.active,
+  a:hover {
+    background: #1b9bff;
+    transition: 0.5s;
+  }
+  
+  .checkbtn {
+    font-size: 22px;
+    color: black;
+    display: none;
+  }
+  
+  #check {
+    display: none;
+  }
+  
+  /* Responsive media query code for smaller screens */
+  @media (max-width: 1050px) {
+    label.logo {
+        padding-left: 30px;
+    }
+    nav ul li a {
+        font-size: 16px;
+    }
+  }
+  
+  @media (max-width: 890px) {
+    .checkbtn {
+        display: block;
+        cursor: pointer;
+    }
+    .navbar-one {
+        display: none;
+    }
+    .logo {
+        font-size: 22px;
+    }
+    nav ul {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: #bdc1c5;
+        top: 80px;
+        left: -100%;
+        text-align: center;
+        transition: all 0.2s;
+        flex-direction: column;
+        justify-content: center;
+    }
+    nav ul li {
+        margin: 20px 0;
+    }
+    nav ul li a {
+        font-size: 20px;
+    }
+    a:hover,
+    a.active {
+        background: none;
+        color: #0082e6;
+    }
+    #check:checked ~ ul {
+        left: 0;
+    }
+  }
+  
+  section {
+    background: url("../image/kagura.png") no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+  }
+  

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+           font-family:Arial, Helvetica, sans-serif;
+           background-color: #f9f9f9;
+           font-size: 20px;
+        }
+        form {
+           width: 50%;
+           margin: 0 auto;
+           background-color: #fff;
+           padding: 20px;
+           border-bottom: 8px;
+           justify-items: center;
+        }
+
+        lable {
+           display: block;
+           margin-bottom: 8px;
+        }
+
+        input[type="text"], input[type="number"] {
+           width: 100%;
+           padding: 8px;
+           border: 1px solid #ccc;
+           font-size: 20px;
+        }
+
+        input[type="submit"] {
+           background-color: #4CAF50;
+           color: #fff;
+           border: none;
+           cursor: pointer;
+           font-size: 20px;
+                  margin-top: 5px;
+           border-radius: 5px;
+        }
+        .back {
+           background: #4CAF50;
+           border-radius: 5px;
+           border: none;
+        }
+        .back a {
+           font-size: 20px;
+           color: #fff;
+           text-decoration: none;
+        }
+        .back:hover,
+        input[type='submit']:hover {
+           background-color: red;
+        }
+        h1 {
+            text-align: center;
+        }
+        input[type='submit']:hover,
+        .back:hover {
+         background: red;
+         transform: scale(1.2);
+         margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="insert">
+        <form action="insert.php" method="post">
+            <h1>This is about data insert</h1>
+            <label for="name">name:</label>
+            <input type="text" id="firstname" name="name" required>
+            
+            <label for="unit" >Unite:</label>
+            <input type="text" name="unit" required>
+            
+            <label for="min">Minimum:</label>
+            <input type="number" name="min" required>
+            
+            <label for="max">Maximum:</label>
+            <input type="number" name="max" required>
+
+            <label for="average" >Average:</label>
+            <input type="text" name="average">
+
+            <input type="submit" name="submit" required>
+
+            <button name="back" class="back">
+                <a href="../../work_of_admin/adminprice.php" >Back</a>
+            </button>
+                
+        </form>
+    </div>
+</body>
+</html>
