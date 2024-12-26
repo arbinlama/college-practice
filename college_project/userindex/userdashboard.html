@@ -29,6 +29,7 @@
     .image-container img {
       width: 100%;
       height: 500px;
+      margin-bottom: 20px;
     }
     .image-container .text {
       position: absolute;
@@ -47,8 +48,73 @@
     .text:hover {
       transform: scale(1.3);
     }
+
+    .service {
+      padding-left: 220px;
+      font-size: 30px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .sewa {
+      display: flex;
+      width: 80%;
+      padding: 20px;
+      margin: 0 auto;
+      justify-content: center;
+      height: 300px;
+    }
+
+    .sewa > div {
+      width: 50%;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 10px;
+      height: 250px;
+    }
+
+    .report {
+      background-color: rgb(245,245,245);
+      height: auto;
+      text-align: left;
+    }
+
+    .report h1, .pricelist h1, .tools h1 {
+      display: flex;
+      justify-content: center;
+      font-weight: bold;
+      top: 0;
+    }
+
+    .report p {
+      display: flex;
+      justify-content: center;
+      line-height: 1.6;
+      font-size: 18px;
+    }
+    .pricelist {
+      background-color: rgb(255, 219, 219);
+      height: auto;
+      text-align: left;
+    }
+
+    .tools {
+      background-color: rgb(245,245,245);
+      height: auto;
+      text-align: left;
+    }
+    .sewa a {
+      text-decoration: underline;
+    }
+    .sewa .report:hover,
+    .pricelist:hover,
+    .tools:hover {
+      transform: scale(1.1);
+      margin: 0 auto;
+    }
+
     .both {
-    width: 80%;
+     width: 80%;
      padding: 20px; 
      margin: 0 auto; 
      display: flex; 
@@ -61,7 +127,7 @@
       width: 50%;
       padding: 10px;
       margin: 10px;
-      border-radius: 20px;
+      border-radius: 10px;
       height: 250px;
 
     }
@@ -95,6 +161,7 @@
     .upprog h1 {
       text-decoration: underline;
       padding-left: 20px;
+      margin-bottom: 20px;
     }
     .upprog p {
       padding-left: 40px;
@@ -103,6 +170,16 @@
     }
     .upprog p strong {
       padding-right: 50px;
+    }
+    .thead {
+      width: 80%;
+      height: 50px;
+      display: flex;
+      margin: 0 auto;
+      justify-content: start;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      
     }
     .agritool {
       width: 80%;
@@ -114,38 +191,39 @@
       text-align: center;
       height: 300px;
     }
-    .agritool h1 {
-     display: flex;
-     justify-content: start;
-     text-align: left;
-     align-items: start;
-     font-weight: bold;
+    .thead h1 {
+      display: flex;
+      justify-content: start;
+      text-align: left;
+      align-items: start;
+      font-weight: bold;
+      padding-left: 50px;
     }
     .agritool > div {
       width: 50%;
       padding: 10px;
       margin: 10px;
-      border-radius: 20px;
+      border-radius: 10px;
       height: 250px;
     }
-    .account, .loan{
+    .account, .loan, .insurance {
       background: rgb(245, 245, 245);
       height: auto;
       text-align: left;
     }
-    .account h1, .loan h1 {
+    .account h1, .loan h1, .insurance h1 {
       display: flex;
       justify-content: center;
       font-weight: bold;
       top: 0;
     }
-    .account p, .loan p {
+    .account p, .loan p, .insurance p {
       display: flex;
       justify-content: center;
       line-height: 1.6;
       font-size: 18px;
     }
-    .account a, .loan a {
+    .account a, .loan a, .insurance a {
       display: flex;
       justify-content: center;
       text-decoration: underline;
@@ -153,9 +231,47 @@
       font-size: 20px;
     }
     .account a:hover,
-    .loan a:hover {
+    .loan a:hover,
+    .insurance a:hover {
       color: red;
       transform: scale(1.2);
+    }
+    .partner {
+      display: flex;
+      justify-content: start;
+      font-size: 30px;
+      font-weight: bold;
+      height: auto;
+      padding-left: 230px;
+      margin-bottom: 20px;
+    }
+    .bank {
+      display: flex;
+      padding: 20px;
+      margin: 0 auto;
+      background-color: rgb(245, 245, 245);
+      justify-content: center;
+      margin-bottom: 10px;
+      width: 77%;
+      border-radius: 10px;
+    }
+    .bank img {
+      padding: 20px;
+    }
+    .bank a:hover {
+      transform: scale(1.2);
+    }
+    .line {
+      border-bottom: 1px solid black;
+      margin-bottom: 10px;
+    }
+    .line1 {
+      width: 75%;
+      margin: 0 auto;
+      background-color: black;
+      border-bottom: 3px solid black;
+      margin-top: 30px;
+      margin-bottom: 30px;
     }
   </style>
 </head>
@@ -213,9 +329,6 @@
     <ul>
       <li><a class="passive" href="../userindex/userdashboard.html">Home</a></li>
       <li><a href="../services_for_user/training.php">Training</a></li>
-      <li><a href="../services_for_user/report.php">View Report</a></li>
-      <li><a href="../services_for_user/php/pricelist.php">Price list</a></li>
-      <li><a href="../services_for_user/php/toolDetail.php">Tools</a></li>
       <li><a href="../services_for_user/aboutus.html">About</a></li>
       <li><a href="../logout/logout.php">
         <i class="fa fa-user-circle"></i>
@@ -223,20 +336,48 @@
     </ul>
   </nav>
 
+
   <div class="con">
     <div class="top">
-      <p>Find your state/city's agriculture records and resources on AgriHub</p>
+      <p>Find your state/city's agriculture resources on AgriHub</p>
     </div>
+   <div class="image-container">
+    <img src="../image/farmer.jpg" alt="agri">
+    
+    <div class="text">
+      This is about the development. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Architecto tempora quia minima perferendis est blanditiis qui tenetur, corrupti animi,
+      ad sunt pariatur excepturi molestiae porro deserunt aut quas rem ducimus.
+    </div>
+    </div>
+    <p class="service">Our Service</p>
 
-    <div class="image-container">
-      <img src="../image/farmer.jpg" alt="agri">
-      <div class="text">
-        This is about the development. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Architecto tempora quia minima perferendis est blanditiis qui tenetur, corrupti animi,
-        ad sunt pariatur excepturi molestiae porro deserunt aut quas rem ducimus.
+    <div class="sewa">
+
+      <div class="report">
+        <h1>Report</h1>
+        <p>This is about the training section in here you can visite the training report and how many people are involve in training and 
+          you can see the all information about the person and contact them to share his/her
+         expericence after taking training and before training.To check report 
+        </p>
+         <a href="../services_for_user/report.php">Click here</a>
+      </div>
+      
+      <div class="pricelist">
+        <h1>Price List</h1>
+        <p>This section is about price.In here we post the our market price up to date 
+          .To check the price <a href="../services_for_user/php/pricelist.php">Click here</a>
+        </p>
+      </div>
+      
+      <div class="tools">
+        <h1>Tools </h1>
+        <p>This section is about tools avaiable wiht us.You can see the name of tools discription and image of tools
+         .To see the detail <a href="../services_for_user/php/toolDetail.php">Click here</a> </p>
       </div>
     </div>
 
+    <div class="line1"></div>
     <div class="both">
 
       <div class="news">
@@ -263,28 +404,44 @@
       </div>
 
     </div>
-    <div class="agritool">
+    <div class="thead">
       <h1>AgriHub Tools</h1>
+    </div>
 
+    
+    <div class="line1"></div>
+    <div class="agritool">
       <div class="account">
         <h1>Your Agrihub account</h1>
         <p>Access secure self-service business tools like managing loans viewing farmers records</p>
-        <a href="#">Create a new account</a>
+        <a href="">Create a new account</a>
       </div>
 
       <div class="loan">
-        <h1>Apply for loan</h1>
-        <p>where you can complete your application and submit it for processing.</p>
-        <a href="#">Apply for a Farmer loan</a>
+        <h1>Loan</h1>
+        <p>where you can find complete detail about government loan and its policy</p>
+        <a href="https://doacrop.gov.np/public/uploads/file/Plan%20and%20policies%20related%20to%20the%20agroecosystem-99527.pdf">Read More</a>
       </div>
 
       <div class="insurance">
-        <h1></h1>
+        <h1>About Insurance</h1>
+        <p>We support farmer for claming insurance</p>
+        <a href="https://nia.gov.np/">Read More</a>
       </div>
     </div>
+    <p class="partner">Partners</p>
 
+    <div class="bank">
+     <a href="https://www.nabilbank.com/individual"> <img src="../image/nabil.png" alt="nabil bank"></a>
+     <a href="https://www.siddharthabank.com/"> <img src="../image/shidartha.png" alt="shidartha bank"></a>
+     <a href="https://www.prabhubank.com/"> <img src="../image/prabhau.png" alt="prabhau bank"></a>
+     <a href="https://www.globalimebank.com/"> <img src="../image/global.png" alt="global bank"></a>
+    </div>
+    
+    <div class="line"></div>
 
   </div>
+
 
   <div id="footer"></div>
   <script>

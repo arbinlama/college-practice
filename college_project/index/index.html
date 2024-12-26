@@ -48,7 +48,7 @@
       transform: scale(1.3);
     }
     .both {
-    width: 80%;
+     width: 80%;
      padding: 20px; 
      margin: 0 auto; 
      display: flex; 
@@ -61,7 +61,7 @@
       width: 50%;
       padding: 10px;
       margin: 10px;
-      border-radius: 20px;
+      border-radius: 10px;
       height: 250px;
 
     }
@@ -105,6 +105,13 @@
     .upprog p strong {
       padding-right: 50px;
     }
+    .thead {
+      width: 80%;
+      height: 50px;
+      display: flex;
+      margin: 0 auto;
+      justify-content: start;
+    }
     .agritool {
       width: 80%;
       padding: 20px;
@@ -115,18 +122,19 @@
       text-align: center;
       height: 300px;
     }
-    .agritool h1 {
-     display: flex;
-     justify-content: start;
-     text-align: left;
-     align-items: start;
-     font-weight: bold;
+    .thead h1 {
+      display: flex;
+      justify-content: start;
+      text-align: left;
+      align-items: start;
+      font-weight: bold;
+      padding-left: 50px;
     }
     .agritool > div {
       width: 50%;
       padding: 10px;
       margin: 10px;
-      border-radius: 20px;
+      border-radius: 10px;
       height: 250px;
     }
     .account, .loan, .insurance {
@@ -158,6 +166,35 @@
     .insurance a:hover {
       color: red;
       transform: scale(1.2);
+    }
+    .partner {
+      display: flex;
+      justify-content: start;
+      font-size: 30px;
+      font-weight: bold;
+      height: auto;
+      padding-left: 230px;
+      margin-bottom: 20px;
+    }
+    .bank {
+      display: flex;
+      padding: 20px;
+      margin: 0 auto;
+      background-color: rgb(245, 245, 245);
+      justify-content: center;
+      margin-bottom: 10px;
+      width: 80%;
+      border-radius: 10px;
+    }
+    .bank img {
+      padding: 20px;
+    }
+    .bank a:hover {
+      transform: scale(1.2);
+    }
+    .line {
+      border-bottom: 1px solid black;
+      margin-bottom: 10px;
     }
   </style>
 </head>
@@ -250,9 +287,11 @@
       </div>
 
     </div>
-    <div class="agritool">
+    <div class="thead">
       <h1>AgriHub Tools</h1>
+    </div>
 
+    <div class="agritool">
       <div class="account">
         <h1>Your Agrihub account</h1>
         <p>Access secure self-service business tools like managing loans viewing farmers records</p>
@@ -260,7 +299,7 @@
       </div>
 
       <div class="loan">
-        <h1>About loans</h1>
+        <h1>Loan</h1>
         <p>where you can find complete detail about government loan and its policy</p>
         <a href="https://doacrop.gov.np/public/uploads/file/Plan%20and%20policies%20related%20to%20the%20agroecosystem-99527.pdf">Read More</a>
       </div>
@@ -268,11 +307,19 @@
       <div class="insurance">
         <h1>About Insurance</h1>
         <p>We support farmer for claming insurance</p>
-        <a href="">Read More</a>
+        <a href="https://nia.gov.np/">Read More</a>
       </div>
     </div>
+    <p class="partner">Partners</p>
 
-
+    <div class="bank">
+     <a href="https://www.nabilbank.com/individual"> <img src="../image/nabil.png" alt="nabil bank"></a>
+     <a href="https://www.siddharthabank.com/"> <img src="../image/shidartha.png" alt="shidartha bank"></a>
+     <a href="https://www.prabhubank.com/"> <img src="../image/prabhau.png" alt="prabhau bank"></a>
+     <a href="https://www.globalimebank.com/"> <img src="../image/global.png" alt="global bank"></a>
+    </div>
+    
+    <div class="line"></div>
   </div>
 
   

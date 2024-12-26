@@ -173,19 +173,27 @@
             text-align: center;
             padding: 20px;
         }
-        
-        .partner {
+        .lll {
             border-top: 1px solid black;
+        }
+        .part {
+            font-size: 25px;
+            font-weight: bold;
+        }
+        .partner {
+            display: flex;
+            justify-content: center;
             color: brown;
             font-size: 25px;
             opacity: 85%;
-            height: 100%px;
-            width: 100%;
+            height: 120px;
+            width: 80%;
             overflow: hidden;
         }
         .partner img {
-            padding: 10px;
-            max-height: 200px;
+            padding-left: 20px;
+            margin: 10px;
+            max-height: 100px;
             max-width: 100px;
         }
         </style>
@@ -277,7 +285,7 @@
                         <p> $training_schedule</p>
                         </div>
                         <div class='image-container'>
-                            <img src='../../training_image/$image' alt='Training Image'>
+                            <img src='../training_image/$image' alt='Training Image'>
                         </div>
                         </div>
 
@@ -296,13 +304,13 @@
         }
         ?>
         <a href="training.php" class="btn">Back to Trainings</a>
-    
-    <div class='partner'>
-        <p>Partners</p>
-        <a href=''><img src='../../image/kagura.png' alt="image loading"></a>
-        <a href=''><img src='../../image/kagura.png' alt="image loading"></a>
-        <a href=''><img src='../../image/kagura.png' alt="image loading"></a>
-    </div>
+        <p class='lll'></p>
+        <p class='part'>Training Partners</p>
+       <div class='partner'>
+        <a href='https://ctevt.org.np/trainingportal/public/'><img src='../image/ctevt.png' alt="image loading"></a>
+        <a href='https://www.herbnepal.com/'><img src='../image/herb.png' alt="image loading"></a>
+        <a href='https://organichasera.org/'><img src='../image/hasera.png' alt="image loading"></a>
+       </div>
     </div>
 </body>
 </html>
