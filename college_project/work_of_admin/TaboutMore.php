@@ -25,13 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $what = htmlspecialchars($_POST['what']);
             $description = htmlspecialchars($_POST['description']);
             $time_heading = htmlspecialchars($_POST['time_heading']);
-            $t_date = htmlspecialchars($_POST['t_date']);
+            $t_data = htmlspecialchars($_POST['t_data']);
             $t_time = htmlspecialchars($_POST['t_time']);
             $place = htmlspecialchars($_POST['place']);
 
             // SQL query to insert into training_details
-            $sql = "INSERT INTO training_details (training_id, t_heading, t_sub_heading, what_do, description, time_heading, t_date, t_time, place) 
-                    VALUES ('$training_id', '$heading', '$sub_heading', '$what', '$description', '$time_heading', '$t_date', '$t_time', '$place')";
+            $sql = "INSERT INTO training_details (training_id, t_heading, t_sub_heading, what_do, description, time_heading, t_data, t_time, place) 
+                    VALUES ('$training_id', '$heading', '$sub_heading', '$what', '$description', '$time_heading', '$t_data', '$t_time', '$place')";
 
             // Execute the query
             if ($conn->query($sql) === TRUE) {
@@ -120,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="text" name="time_heading" id="time_heading" required>
 
             <label for="t_date">Training date:</label><br>
-            <input type="text" name="t_date" id="t_date" required>
+            <input type="text" name="t_data" id="t_date" required>
 
             <label for="t_time">Training time:</label><br>
             <input type="text" name="t_time" id="t_time" required>

@@ -121,7 +121,7 @@
             echo"
             <script>
             alert ('You register successfully');
-              window.location.href = '../training.php';
+              window.location.href = 'training.php';
             </script>";
         }else {
             echo 'database error: ' . mysqli_error($conn);

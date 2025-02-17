@@ -230,7 +230,7 @@
                 $what_do = htmlspecialchars($row['what_do']);
                 $description = htmlspecialchars($row['description']);
                 $time_heading = htmlspecialchars($row['time_heading']);
-                $t_date = htmlspecialchars($row['t_date']);
+                $t_data = htmlspecialchars($row['t_data']);
                 $t_time = htmlspecialchars($row['t_time']);
                 $place = htmlspecialchars($row['place']);
 
@@ -258,7 +258,7 @@
                         
                         <div class='time'>
                         <p class='time_head'>$time_heading</p>
-                        <p><strong >December Date:</strong>$t_date</p>
+                        <p><strong >December Date:</strong>$t_data</p>
                         <p><strong >Time:</strong>$t_time</p>
                         <p><strong >Place:</strong>$place</p>
                         </div>
