@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="admindashboard.css">
+    <link rel="icon" href="../image/ficon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../footer/footer.css">
     <style>
-        /* Sidebar Styles */
         .sidebar {
             height: 100%;
             width: 250px;
@@ -29,9 +31,10 @@
 
         .sidebar a:hover {
             background-color: red;
-            border-radius: 10px;
-            transform: scale(1.1);
-            margin: 10px;
+          border-radius: 10px;
+          scale: 1.2;
+          padding: 15px;
+          margin: 10px;
         }
 
         .sidebar .close-btn {
@@ -39,51 +42,18 @@
             top: 10px;
             right: 25px;
             font-size: 36px;
-            color: white;
-        }
-
-        .close-btn:hover {
-            color: black;
-        }
-
-        /* Menu Button and Logo */
-        .menu-container {
-            display: flex;
-            align-items: center;
-            gap: 10px; /* Space between icon and logo */
-            margin: 10px;
-            cursor: pointer;
-            transition: margin-left 0.3s; /* Smooth sliding */
         }
 
         .open-btn {
             font-size: 30px;
             color: #4f4f4f;
+            cursor: pointer;
+            margin: 10px;
         }
 
-        .flog {
-            display: flex;
-            align-items: center;
-            font-size: 25px;
-            font-weight: bold;
-        }
-
-        .flog img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 10px;
-            transition: transform 0.3s;
-        }
-
-        .flog img:hover {
-            transform: scale(1.2);
-        }
-
-        /* Main Content */
         .main-content {
             margin-left: 0;
-            transition: margin-left 0.3s;
+            transition: margin-left .3s;
             padding: 20px;
         }
 
@@ -103,13 +73,8 @@
 
         .image-container img {
             width: 100%;
-            height: 85vh;
+            height: 500px;
             margin-bottom: 20px;
-        }
-
-        /* Responsive Sidebar Close on Click */
-        body {
-            font-family: Arial, sans-serif;
         }
 
         .text {
@@ -124,6 +89,9 @@
             padding: 10px;
             border-radius: 5px;
         }
+        .close-btn:hover {
+          color: black;
+        }
     </style>
 </head>
 <body>
@@ -131,59 +99,47 @@
 <!-- Sidebar -->
 <div class="sidebar" id="mySidebar">
     <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&times;</a>
-    <br><br>
+    <!-- <a href="../adminindex/admindashboard.html">Home</a> -->
     <a href="../work_of_admin/addtool.html">Add Tools</a>
     <a href="../work_of_admin/addTraining.php">Add Training</a>
     <a href="../work_of_admin/adminprice.php">Add Price</a>
-    <a href="../work_of_admin/adphp/toolsDisplay.php">Update Price</a>
-    <a href="../image_insert/insert.php">Add Tools</a>
-    <a href="../work_of_admin/displayTraining.php">Visit Training</a>
-    <a href="../work_of_admin/displayTrainingReg.php">View Training Registrations</a>
-    <a href="../work_of_admin/display">Training Display</a>
+    <a href="../work_of_admin/adphp/toolsDisplay.php">Update price</a>
+    <a href="../image_insert/insert.php">Add tools</a>
+    <a href="../work_of_admin/displayTraining.php">Visite Tranning</a>
+    <a href="../work_of_admin/displayTrainingReg.php">Training register view</a>
+    <a href="../work_of_admin/display">Training display</a>
     <a href="../logout/log2.php"><i class="fa fa-user-circle"></i> Logout</a>
+
+    <!-- Add more links as needed -->
 </div>
 
-<!-- Menu Button with Logo and Name -->
-<div class="menu-container" id="menuContainer" onclick="openNav()">
-    <span class="open-btn">&#9776;</span>
-    <div class="flog">
-        <img src="../image/ficon.png" alt="logo">
-        <label class="logo">AgriHub</label>
-    </div>
-</div>
+<!-- Open Button for Sidebar -->
+<span class="open-btn" onclick="openNav()">&#9776; AgriHub </span>
 
-<!-- Main Content -->
-<div class="main-content" id="mainContent">
+<!-- Main Content Area -->
+<div class="main-content">
     <div class="top">
         <p>Find your state/city's agriculture resources on AgriHub</p>
     </div>
+
     <div class="image-container">
         <img src="../image/farmer.jpg" alt="AgriHub">
+       
     </div>
+
 </div>
 
-<!-- JavaScript -->
 <script>
+   
     function openNav() {
         document.getElementById("mySidebar").style.left = "0";
-        document.getElementById("mainContent").style.marginLeft = "250px";
-        document.getElementById("menuContainer").style.marginLeft = "250px"; // Move menu with sidebar
+        document.querySelector(".main-content").style.marginLeft = "250px";
     }
 
     function closeNav() {
         document.getElementById("mySidebar").style.left = "-250px";
-        document.getElementById("mainContent").style.marginLeft = "0";
-        document.getElementById("menuContainer").style.marginLeft = "0"; // Move menu back
+        document.querySelector(".main-content").style.marginLeft = "0";
     }
-
-    // Close sidebar when clicking outside
-    document.addEventListener("click", function(event) {
-        const sidebar = document.getElementById("mySidebar");
-        const menuContainer = document.getElementById("menuContainer");
-        if (!sidebar.contains(event.target) && !menuContainer.contains(event.target)) {
-            closeNav();
-        }
-    });
 </script>
 
 </body>
