@@ -4,10 +4,10 @@ $username = "root";
 $password = "";
 $db = "agrihubdb";
 
-$conn= new mysqli($servername, $username, $password, $db);
+$conn = new mysqli($servername, $username, $password, $db);
 
-if($conn->connect_error) {
-    die("faild to connect data base.");
+if ($conn->connect_error) {
+    die("Failed to connect to database.");
 }
-echo ("connect successfully.");
+echo "<script>alert('Connect successfully');</script>";
 ?>

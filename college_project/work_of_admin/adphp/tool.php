@@ -6,16 +6,16 @@ if (isset($_POST['submit'])) {
     $tmp_name = $_FILES['image']['tmp_name'];
     $folder = '../../tools_image/' . $file_name;
     $name = $_POST['name']; 
-    $dis = $_POST['description']; // Get the description from the form
+    $price = $_POST['price']; // Get the price
 
     // Check if description is being received correctly
-    if (empty($dis)) {
-        echo "Description is required.";
+    if (empty($price)) {
+        echo "price is required.";
         exit;
     }
 
     // Insert into the database
-    $query = mysqli_query($conn, "INSERT INTO tool_tb (name, image, description) VALUES ('$name', '$file_name', '$dis')");
+    $query = mysqli_query($conn, "INSERT INTO tool_tb (name, image, price) VALUES ('$name', '$file_name', '$price')");
 
     if ($query) {
         // Move the uploaded file

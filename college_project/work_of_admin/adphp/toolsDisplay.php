@@ -32,18 +32,28 @@
             font-size: 25px;
             padding: 5px 10px;
             display: inline-block;
-            position: sticky;
+            margin: 20px;
         }
         .home:hover {
             background: red;
             transform: scale(1.2);
         }
+        a {
+            text-decoration: none;
+            color: blue;
+            margin-right: 10px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <h2>This is a section of tools view</h2>
+    <!-- Back button outside the table -->
+    <a href="../../adminindex/admindashboard.html" class="home">Back</a>
+
     <table>
-        <a href="../../adminindex/admindashboard.html" class="home">Back</a>
         <tr>
             <th>S.N</th>
             <th>Photo</th>
@@ -55,7 +65,7 @@
         include "../../work_of_admin/price_detail/conn.php";
         $sql = "SELECT * FROM tool_tb";
         $result = $conn->query($sql);
-        
+
         if ($result->num_rows > 0) {
             $sn = 1;
             while ($row = $result->fetch_assoc()) {
@@ -64,7 +74,7 @@
                     <td>{$sn}</td>
                     <td><img src='../../tools_image/" . htmlspecialchars($row['image']) . "' alt='loading image'></td>
                     <td>" . htmlspecialchars($row['name']) . "</td>
-                    <td>" . htmlspecialchars($row['description']) . "</td>
+                    <td>" . htmlspecialchars($row['price']) . "</td>
                     <td>
                         <a href='updateImage.php?id=" . htmlspecialchars($row['id']) . "'>Update</a>
                         <a href='deleteImage.php?id=" . htmlspecialchars($row['id']) . "'>Delete</a>

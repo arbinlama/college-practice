@@ -44,14 +44,36 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
-        input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
+        .buttn {
+         display: flex;
+         justify-content: center;
+         gap: 10px;
         }
-        input[type="submit"]:hover {
-            background-color: #45a049;
+        .buttn input {
+          padding: 10px 20px;
+          border-radius: 5px;
+          border: none;
+          font-size: 16px;
+          cursor: pointer;
+          width: fit-content;
+        }
+        .submit-btn {
+          background-color: #4caf50;
+         color: white;
+        }
+        .back-btn {
+          background-color: black;
+          color: white;
+          margin: 10px;
+          padding: 10px;
+          border-radius: 5px;
+
+        }
+        .submit-btn:hover {
+          background-color: #45a049;
+        }
+        .back-btn:hover {
+          background-color: #bbb;
         }
         p {
             font-size: 14px;
@@ -93,8 +115,11 @@
             
             <label for="zip">Your ZIP Code:</label>
             <input type="text" name="zip" id="zip" placeholder="ZIP Code" required>
-            
-            <input type="submit" value="Submit" name="submit">
+            <div class="buttn">
+             <input type="submit" class="submit-btn" value="Submit" name="submit">
+             <button type="button" class="back-btn" onclick="window.history.back();">Back</button>
+            </div>
+
         </div>
     </form>
     <?php 
