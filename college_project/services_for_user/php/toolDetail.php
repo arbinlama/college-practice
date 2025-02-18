@@ -37,6 +37,7 @@
             width: 280px;
             transition: transform 0.3s ease-in-out;
             position: relative;
+            text-decoration: none; /* Remove underline for the anchor tag */
         }
 
         .tool-card:hover {
@@ -104,11 +105,14 @@
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                echo "<div class='tool-card'>
-                <img src='../../tools_image/{$row['image']}' alt='Tool Image'>
-                <h3>{$row['name']}</h3>
-                <p class='price'>Price: \${$row['price']}</p>
-                </div>";
+                // Create a purchase link with the tool id
+                $tool_link = "buy.php?id=" . $row['id']; 
+                echo "<a href='{$tool_link}' class='tool-card'>
+                    <img src='../../tools_image/{$row['image']}' alt='Tool Image'>
+                    <h3>{$row['name']}</h3>
+                    <p class='price'>Price: \${$row['price']}</p>
+                </a>";
+                
             }
         } else {
             echo "<p>No records found</p>";

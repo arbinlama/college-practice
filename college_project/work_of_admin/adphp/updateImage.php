@@ -89,6 +89,7 @@
         $id = $_POST['id'];
         $name = $_POST['name'];
         $price = $_POST['price'];
+        $quantity = $_POST['quantity'];
 
         // Handle file upload
         $image = $_FILES['image']['name'];
@@ -98,13 +99,15 @@
         if (!empty($image)) {
             move_uploaded_file($tmp_name, $folder); 
         } else {
-            $image = $_POST['existing_image'];
+            $image = $_POST['existing_image'];  // No change if no new image is uploaded
         }
 
-        // Direct SQL query
-        $sql = "UPDATE tool_tb SET name = '$name', image = '$image', price = '$price' WHERE id = $id";
+        // Use prepared statements to prevent SQL injection
+        $sql = "UPDATE tool_tb SET name = ?, image = ?, price = ?, quantity = ? WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sssdi", $name, $image, $price, $quantity, $id);
 
-        if ($conn->query($sql) === TRUE) {
+        if ($stmt->execute()) {
             echo "<script>
             alert('Record updated successfully');
             window.location.href = 'toolsDisplay.php';
@@ -124,17 +127,23 @@
             $name = $row['name'];
             $image = $row['image'];
             $price = $row['price'];
+            $quantity = $row['quantity'];
             ?>
             <form action="" method="post" enctype="multipart/form-data">
                 <h2>Update Tool</h2>
+
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                 <input type="hidden" name="existing_image" value="<?php echo $image; ?>">
 
                 <label for="name">Tool Name</label>
                 <input type="text" name="name" value="<?php echo $name; ?>" required>
+                
+                <label for="quantity">Quantity: </label>
+                <input type="text" name="quantity" value="<?php echo $quantity; ?>" required>
 
                 <label for="image">Tool Image</label>
                 <input type="file" name="image">
+                
                 <?php if (!empty($image)) { ?>
                     <p>Current Image:</p>
                     <img src="../../tools_image/<?php echo $image; ?>" alt="Tool Image">

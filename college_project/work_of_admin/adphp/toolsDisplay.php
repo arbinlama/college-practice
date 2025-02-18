@@ -58,7 +58,8 @@
             <th>S.N</th>
             <th>Photo</th>
             <th>Name</th>
-            <th>Description</th>
+            <th>Price</th>
+            <th>Quantity</th>
             <th colspan="2">Action</th>
         </tr>
         <?php
@@ -75,6 +76,7 @@
                     <td><img src='../../tools_image/" . htmlspecialchars($row['image']) . "' alt='loading image'></td>
                     <td>" . htmlspecialchars($row['name']) . "</td>
                     <td>" . htmlspecialchars($row['price']) . "</td>
+                    <td>" . htmlspecialchars($row['quantity']) . "</td>
                     <td>
                         <a href='updateImage.php?id=" . htmlspecialchars($row['id']) . "'>Update</a>
                         <a href='deleteImage.php?id=" . htmlspecialchars($row['id']) . "'>Delete</a>
