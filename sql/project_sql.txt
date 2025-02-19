@@ -1,0 +1,89 @@
+CREATE database agrihubdb;
+
+
+creating admin table 
+CREATE TABLE admin_tb (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    user_type VARCHAR(50) NOT NULL
+);
+
+creating image_tb 
+CREATE TABLE image_tb (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    image VARCHAR(255) NULL,
+    name VARCHAR(255) NOT NULL
+);
+
+creating price_tb
+CREATE TABLE price_tb (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NULL,
+    average VARCHAR(255) NULL,
+    minimum INT NULL,
+    maximum INT NULL,
+    unit VARCHAR(255) NULL
+);
+
+creating tool_tb
+CREATE TABLE tool_tb (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    price DECIMAL(10, 2),
+    image VARCHAR(255),
+    quantity INT -- Available stock quantity
+);
+
+ crating training_tb
+CREATE TABLE training_tb (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    heading VARCHAR(255) NULL,
+    sub_heading VARCHAR(255) NULL,
+    t_description VARCHAR(255) NULL,
+    training_schedule VARCHAR(255) NULL,
+    class_time VARCHAR(255) NULL,
+    class_duration VARCHAR(255) NULL,
+    diff VARCHAR(255) NULL,
+    exp1 VARCHAR(255) NULL,
+    image VARCHAR(255) NULL
+);
+
+creating taining detail 
+CREATE TABLE training_details (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    training_id INT NULL,
+    description VARCHAR(255) NULL,
+    place VARCHAR(255) NULL,
+    time_heading VARCHAR(255) NULL,
+    t_data VARCHAR(255) NULL,
+    t_heading VARCHAR(255) NULL,
+    t_sub_heading VARCHAR(255) NULL,
+    t_time VARCHAR(255) NULL,
+    what_do VARCHAR(255) NULL,
+    INDEX idx_training_id (training_id),
+    FOREIGN KEY (training_id) REFERENCES training_tb(id) ON DELETE CASCADE
+);
+
+create training register table 
+CREATE TABLE training_register_tb (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(255) NULL,
+    last_name VARCHAR(255) NULL,
+    email VARCHAR(255) NULL,
+    phone VARCHAR(50) NULL,
+    country VARCHAR(255) NULL,
+    zip VARCHAR(50) NULL,
+    training_name VARCHAR(255) NULL
+);
+
+create order table
+CREATE TABLE orders (
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    tool_id INT,
+    quantity INT,
+    total_price DECIMAL(10, 2),
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
