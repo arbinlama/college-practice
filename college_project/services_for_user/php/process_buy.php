@@ -7,6 +7,7 @@ $quantity = $_POST['quantity'];
 $price = $_POST['price'];
 $name = $_POST['name']; // Get name from form
 $address = $_POST['address']; // Get address from form
+$contact = $_POST['contact'];
 
 // Check if the requested quantity is available in the database
 $sql = "SELECT * FROM tool_tb WHERE id = $tool_id"; // Directly using $tool_id
@@ -21,7 +22,7 @@ if ($result->num_rows > 0) {
         $total_price = $price * $quantity;
 
         // Insert the order into the orders table, including name and address
-        $order_sql = "INSERT INTO orders (tool_id, quantity, total_price, order_date, name, address) VALUES ($tool_id, $quantity, $total_price, NOW(), '$name', '$address')";
+        $order_sql = "INSERT INTO orders (tool_id, quantity, total_price, order_date, name, address, contact) VALUES ($tool_id, $quantity, $total_price, NOW(), '$name', '$address', '$contact')";
         $conn->query($order_sql);
         
         // Reduce the stock by the ordered quantity

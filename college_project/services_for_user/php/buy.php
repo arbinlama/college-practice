@@ -6,8 +6,11 @@ if (isset($_GET['id'])) {
     $tool_id = $_GET['id'];
 
     // Fetch the tool details from the database
-    $sql = "SELECT * FROM tool_tb WHERE id = $tool_id"; // Directly using $tool_id
-    $result = $conn->query($sql);
+    $sql = "SELECT * FROM tool_tb WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $tool_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
         $tool = $result->fetch_assoc();
@@ -157,6 +160,9 @@ if (isset($_GET['id'])) {
                 <!-- User Information (optional) -->
                 <label for="name">Full Name:</label>
                 <input type="text" name="name" placeholder="Enter your full name" required>
+
+                <label for="contact">Contact:</label>
+                <input type="text" name="contact" placeholder="Enter your contact number" required>
 
                 <label for="address">Shipping Address:</label>
                 <textarea name="address" rows="4" placeholder="Enter your shipping address" required></textarea>
