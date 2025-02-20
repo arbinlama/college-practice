@@ -66,7 +66,7 @@
     }
 
     .sewa > div {
-      width: 50%;
+      width: 30%;
       padding: 10px;
       margin: 10px;
       border-radius: 10px;
@@ -79,14 +79,15 @@
       text-align: left;
     }
 
-    .report h1, .pricelist h1, .tools h1 {
+    .report h1, .pricelist h1, .tools h1, .training h1, .about h1 {
       display: flex;
       justify-content: center;
       font-weight: bold;
       top: 0;
     }
 
-    .report p {
+    .report p, .pricelist p, .tools p, .training p, .about p {
+      margin-top: 20px;
       display: flex;
       justify-content: center;
       line-height: 1.6;
@@ -97,8 +98,19 @@
       height: auto;
       text-align: left;
     }
+    .about {
+      background-color: rgb(255, 219, 219);
+      height: auto;
+      text-align: left;
+    }
 
     .tools {
+      background-color: rgb(245,245,245);
+      height: auto;
+      text-align: left;
+    }
+
+    .training {
       background-color: rgb(245,245,245);
       height: auto;
       text-align: left;
@@ -106,9 +118,11 @@
     .sewa a {
       text-decoration: underline;
     }
-    .sewa .report:hover,
+    .report:hover,
     .pricelist:hover,
-    .tools:hover {
+    .tools:hover,
+    .training:hover,
+    .about:hover {
       transform: scale(1.1);
       margin: 0 auto;
     }
@@ -222,6 +236,7 @@
       justify-content: center;
       line-height: 1.6;
       font-size: 18px;
+      margin-top: 20px;
     }
     .account a, .loan a, .insurance a {
       display: flex;
@@ -323,10 +338,6 @@
   </nav>
   
   <nav class="navbar-second">
-    <input type="checkbox" id="check">
-    <label for="check" class="checkbtn">
-      <i class="fa fa-bars"></i>
-    </label>
     <div class="flog">
       <img src="../image/ficon.png" alt="logo">
       <label class="logo">AgriHub</label>
@@ -358,15 +369,17 @@
     <div class="sewa">
       <div class="tools">
         <h1>Purchase tools</h1>
-        <p>This section is about tools avaiable wiht us.You can see the name of tools discription and image of tools
-          .To see the detail <a href="../services_for_user/php/toolDetail.php">Click here</a> </p>
+        <p>This section is about tools avaiable wiht us.You can see the name of tools discription and image of tools.To see the detai</p>
+        <a href="../services_for_user/php/toolDetail.php">Click here</a>
+         
         </div>
 
       <div class="pricelist">
         <h1>Check todays price</h1>
         <p>This section is about price.In here we post the our market price up to date 
-          .To check the price <a href="../services_for_user/php/pricelist.php">Click here</a>
+          .To check the price 
         </p>
+        <a href="../services_for_user/php/pricelist.php">Click here</a>
       </div>
       
         <div class="report">
@@ -379,15 +392,17 @@
         </div>
       </div>
     <div class="sewa">
-      <div class="tools">
+      <div class="training">
         <h1>About Training</h1>
         <p>This section is about tools avaiable wiht us.You can see the name of tools discription and image of tools
-         .To see the detail <a href="../services_for_user/training.php">Click here</a> </p>
+         To see the detail</p>
+         <a href="../services_for_user/training.php">Click here</a> 
       </div>
-      <div class="tools">
+      <div class="about">
         <h1>About Us</h1>
         <p>This section is about tools avaiable wiht us.You can see the name of tools discription and image of tools
-         .To see the detail <a href="../services_for_user/aboutus.html">About</a></p>
+         To see the detail</p>
+         <a href="../services_for_user/aboutus.html">Click here</a>
       </div>
     </div>
 
