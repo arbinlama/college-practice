@@ -149,27 +149,48 @@ if (isset($_GET['id'])) {
             <p>Price: $<?php echo $tool['price']; ?></p>
 
             <!-- Purchase Form -->
-            <form action="process_buy.php" method="POST" class="form-container">
-                <input type="hidden" name="tool_id" value="<?php echo $tool['id']; ?>">
-                <input type="hidden" name="price" value="<?php echo $tool['price']; ?>">
+           <!-- Purchase Form -->
+<form action="process_buy.php" method="POST" class="form-container" onsubmit="return validateForm()">
+    <input type="hidden" name="tool_id" value="<?php echo $tool['id']; ?>">
+    <input type="hidden" name="price" value="<?php echo $tool['price']; ?>">
 
-                <!-- Quantity Input -->
-                <label for="quantity">Quantity:</label>
-                <input type="number" name="quantity" min="1" value="1" required>
+    <!-- Quantity Input -->
+    <label for="quantity">Quantity:</label>
+    <input type="number" name="quantity" min="1" value="1" required>
 
-                <!-- User Information (optional) -->
-                <label for="name">Full Name:</label>
-                <input type="text" name="name" placeholder="Enter your full name" required>
+    <!-- User Information (optional) -->
+    <label for="name">Full Name:</label>
+    <input type="text" name="name" placeholder="Enter your full name" required>
+    
+        <label for="contact">Contact Number:</label>
+        <input type="text" name="contact" placeholder="Enter your contact number" required>
 
-                <label for="contact">Contact:</label>
-                <input type="text" name="contact" placeholder="Enter your contact number" required>
+    <label for="address">Shipping Address:</label>
+    <textarea name="address" rows="4" placeholder="Enter your shipping address" required></textarea>
 
-                <label for="address">Shipping Address:</label>
-                <textarea name="address" rows="4" placeholder="Enter your shipping address" required></textarea>
+    <!-- Submit Button -->
+    <button type="submit">Place Order</button>
+</form>
 
-                <!-- Submit Button -->
-                <button type="submit">Place Order</button>
-            </form>
+<!-- JavaScript Validation Function -->
+<script>
+    function validateForm() {
+        const contactInput = document.querySelector('input[name="contact"]');
+        const contactValue = contactInput.value.trim();
+
+        // Regular expression for validating the contact number
+        const contactPattern = /^98\d{8}$/;
+
+        if (!contactPattern.test(contactValue)) {
+            alert('Please enter a valid contact number that starts with "98" and contains 10 digits.');
+            contactInput.focus();
+            return false; // Prevent form submission
+        }
+
+        return true; // Allow form submission
+    }
+ </script>
+
         </div>
     </div>
 </body>
