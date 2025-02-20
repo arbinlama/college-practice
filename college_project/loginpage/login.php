@@ -1,6 +1,6 @@
 <?php 
 include "../image_insert/conn.php"; 
-$sql = "SELECT * FROM image_tb WHERE id = 39"; 
+$sql = "SELECT * FROM image_tb WHERE id = 2"; 
 $result = $conn->query($sql); 
 $image_path = "";
 if ($result->num_rows > 0) {

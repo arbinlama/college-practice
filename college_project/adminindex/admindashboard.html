@@ -11,9 +11,8 @@
             width: 250px;
             position: fixed;
             top: 0;
-            left: -250px;
+            left: 0;
             background-color: #4f4f4f;
-            transition: 0.3s;
             padding-top: 20px;
         }
 
@@ -24,6 +23,7 @@
             color: #fff;
             display: block;
             transition: 0.3s;
+            cursor: pointer;
         }
 
         .sidebar a:hover {
@@ -33,31 +33,12 @@
             margin: 10px;
         }
 
-        .sidebar .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 25px;
-            font-size: 36px;
-            color: white;
-        }
-
-        .close-btn:hover {
-            color: black;
-        }
-
-        /* Menu Button and Logo */
+        /* Menu and Logo */
         .menu-container {
             display: flex;
             align-items: center;
-            gap: 10px; /* Space between icon and logo */
+            gap: 10px;
             margin: 10px;
-            cursor: pointer;
-            transition: margin-left 0.3s; /* Smooth sliding */
-        }
-
-        .open-btn {
-            font-size: 30px;
-            color: #4f4f4f;
         }
 
         .flog {
@@ -81,9 +62,10 @@
 
         /* Main Content */
         .main-content {
-            margin-left: 0;
-            transition: margin-left 0.3s;
-            padding: 20px;
+            margin-left: 250px; /* Ensure content doesn't overlap sidebar */
+            width: calc(100vw - 250px); /* Full width minus sidebar */
+            height: 100vh;
+            padding: 0;
         }
 
         .top {
@@ -91,60 +73,40 @@
             background: #4f4f4f;
             justify-content: center;
             height: 40px;
+            align-items: center;
         }
 
         .top p {
-            margin: 10px;
             font-size: 20px;
             font-weight: bold;
             color: #fff;
         }
 
-        .image-container img {
+        /* Full-size iframe */
+        iframe {
             width: 100%;
-            height: 80vh;
-            margin-bottom: 20px;
-        }
-
-        /* Responsive Sidebar Close on Click */
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        .text {
-            position: absolute;
-            top: 10%;
-            left: 5%;
-            width: 20%;
-            color: #fff;
-            font-size: 18px;
-            font-weight: bold;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 10px;
-            border-radius: 5px;
+            height: calc(100vh - 40px); /* Full height minus top bar */
+            border: none;
         }
     </style>
 </head>
 <body>
 
 <!-- Sidebar -->
-<div class="sidebar" id="mySidebar">
-    <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&times;</a>
-    <br><br>
-    <a href="../work_of_admin/addtool.html">Add Tools</a>
-    <a href="../work_of_admin/addTraining.php">Add Training Details</a>
-    <a href="../work_of_admin/adminprice.php">Add Price</a>
-    <a href="../work_of_admin/adphp/toolsDisplay.php">Tools view</a>
-    <a href="../image_insert/insert.php">Add Image in database</a>
-    <a href="../work_of_admin/displayTraining.php">Visit Training</a>
-    <a href="../work_of_admin/displayTrainingReg.php">View Training Registrations</a>
-    <a href="../work_of_admin/display">Report Display</a>
+<div class="sidebar">
+    <a onclick="changeIframeSrc('../work_of_admin/addtool.html')">Add Tools</a>
+    <a onclick="changeIframeSrc('../work_of_admin/addTraining.php')">Add Training Details</a>
+    <a onclick="changeIframeSrc('../work_of_admin/adminprice.php')">Add Price</a>
+    <a onclick="changeIframeSrc('../work_of_admin/adphp/toolsDisplay.php')">Tools View</a>
+    <a onclick="changeIframeSrc('../image_insert/insert.php')">Add Image in Database</a>
+    <a onclick="changeIframeSrc('../work_of_admin/displayTraining.php')">Visit Training</a>
+    <a onclick="changeIframeSrc('../work_of_admin/displayTrainingReg.php')">View Training Registrations</a>
+    <a onclick="changeIframeSrc('../work_of_admin/display')">Report Display</a>
     <a href="../logout/log2.php"><i class="fa fa-user-circle"></i> Logout</a>
 </div>
 
-<!-- Menu Button with Logo and Name -->
-<div class="menu-container" id="menuContainer" onclick="openNav()">
-    <span class="open-btn">&#9776;</span>
+<!-- Menu and Logo -->
+<div class="menu-container">
     <div class="flog">
         <img src="../image/ficon.png" alt="logo">
         <label class="logo">AgriHub</label>
@@ -152,37 +114,18 @@
 </div>
 
 <!-- Main Content -->
-<div class="main-content" id="mainContent">
+<div class="main-content">
     <div class="top">
         <p>Find your state/city's agriculture resources on AgriHub</p>
     </div>
-    <div class="image-container">
-        <img src="../image/farmer.jpg" alt="AgriHub">
-    </div>
+    <iframe id="contentFrame" src="../work_of_admin/addtool.html"></iframe>
 </div>
 
 <!-- JavaScript -->
 <script>
-    function openNav() {
-        document.getElementById("mySidebar").style.left = "0";
-        document.getElementById("mainContent").style.marginLeft = "250px";
-        document.getElementById("menuContainer").style.marginLeft = "-1"; // Move menu with sidebar
+    function changeIframeSrc(url) {
+        document.getElementById("contentFrame").src = url;
     }
-
-    function closeNav() {
-        document.getElementById("mySidebar").style.left = "-250px";
-        document.getElementById("mainContent").style.marginLeft = "0";
-        document.getElementById("menuContainer").style.marginLeft = "0"; // Move menu back
-    }
-
-    // Close sidebar when clicking outside
-    document.addEventListener("click", function(event) {
-        const sidebar = document.getElementById("mySidebar");
-        const menuContainer = document.getElementById("menuContainer");
-        if (!sidebar.contains(event.target) && !menuContainer.contains(event.target)) {
-            closeNav();
-        }
-    });
 </script>
 
 </body>
