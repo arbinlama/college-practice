@@ -5,13 +5,12 @@ include "conn.php";
 $tool_id = $_POST['tool_id'];
 $quantity = $_POST['quantity'];
 $price = $_POST['price'];
+$name = $_POST['name']; // Get name from form
+$address = $_POST['address']; // Get address from form
 
 // Check if the requested quantity is available in the database
-$sql = "SELECT * FROM tool_tb WHERE id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $tool_id);
-$stmt->execute();
-$result = $stmt->get_result();
+$sql = "SELECT * FROM tool_tb WHERE id = $tool_id"; // Directly using $tool_id
+$result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     $tool = $result->fetch_assoc();
@@ -21,37 +20,26 @@ if ($result->num_rows > 0) {
         // Enough stock, proceed with the order
         $total_price = $price * $quantity;
 
-        // Insert the order into the orders table
-        $order_sql = "INSERT INTO orders (tool_id, quantity, total_price, order_date) VALUES (?, ?, ?, NOW())";
-        $order_stmt = $conn->prepare($order_sql);
-        $order_stmt->bind_param("iid", $tool_id, $quantity, $total_price);
-        $order_stmt->execute();
+        // Insert the order into the orders table, including name and address
+        $order_sql = "INSERT INTO orders (tool_id, quantity, total_price, order_date, name, address) VALUES ($tool_id, $quantity, $total_price, NOW(), '$name', '$address')";
+        $conn->query($order_sql);
         
         // Reduce the stock by the ordered quantity
         $new_quantity = $tool['quantity'] - $quantity;
-        $update_sql = "UPDATE tool_tb SET quantity = ? WHERE id = ?";
-        $update_stmt = $conn->prepare($update_sql);
-        $update_stmt->bind_param("ii", $new_quantity, $tool_id);
-        $update_stmt->execute();
+        $update_sql = "UPDATE tool_tb SET quantity = $new_quantity WHERE id = $tool_id";
+        $conn->query($update_sql);
         
-        echo "
-        <script>
-            showModal('Order placed successfully!', 'your-redirect-url.php');
-        </script>";
-        
+        $message = 'Order placed successfully!';
     } else {
         // Not enough stock
-        echo "
-        <script>
-            showModal('Sorry, not enough stock available!', 'your-redirect-url.php');
-        </script>";
+        $message = 'Sorry, not enough stock available!';
     }
 } else {
-    echo "
-    <script>
-        showModal('Tool not found!', 'your-redirect-url.php');
-    </script>";
+    $message = 'Tool not found!';
 }
+
+// Close the connection
+$conn->close();
 ?>
 
 <!-- Modal Styles -->
@@ -91,24 +79,28 @@ if ($result->num_rows > 0) {
 <!-- Modal HTML -->
 <div id="modal" class="modal">
     <div class="modal-content">
-        <p id="modalMessage"></p>
+        <p id="modalMessage"><?php echo isset($message) ? $message : ''; ?></p>
         <button onclick="closeModal()">OK</button>
     </div>
 </div>
 
 <!-- JavaScript to show/hide modal and redirect -->
 <script>
-    function showModal(message, redirectUrl) {
+    window.onload = function() {
+        var modalMessage = "<?php echo isset($message) ? $message : ''; ?>";
+        if (modalMessage) {
+            showModal(modalMessage);
+        }
+    };
+
+    function showModal(message) {
         document.getElementById('modalMessage').innerText = message;
         document.getElementById('modal').style.display = 'flex';
-
-        // Redirect after 2 seconds to allow the user to see the message
-        setTimeout(function() {
-            window.location.href = redirectUrl;
-        }, 2000);
     }
-
+    
     function closeModal() {
         document.getElementById('modal').style.display = 'none';
+        // Redirect after closing the modal
+        window.location.href = 'toolDetail.php';
     }
 </script>

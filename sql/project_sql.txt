@@ -8,6 +8,15 @@ CREATE TABLE admin_tb (
     password VARCHAR(255) NOT NULL,
     user_type VARCHAR(50) NOT NULL
 );
+creating user table 
+CREATE TABLE user_tb (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    description varchar(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    user_type VARCHAR(50) NOT NULL
+);
+
 
 creating image_tb 
 CREATE TABLE image_tb (
@@ -83,6 +92,8 @@ CREATE TABLE orders (
     tool_id INT,
     quantity INT,
     total_price DECIMAL(10, 2),
+    name varchar(255) not null,
+    address varchar(255) not null,
     order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

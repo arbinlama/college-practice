@@ -6,11 +6,8 @@ if (isset($_GET['id'])) {
     $tool_id = $_GET['id'];
 
     // Fetch the tool details from the database
-    $sql = "SELECT * FROM tool_tb WHERE id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $tool_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $sql = "SELECT * FROM tool_tb WHERE id = $tool_id"; // Directly using $tool_id
+    $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         $tool = $result->fetch_assoc();
