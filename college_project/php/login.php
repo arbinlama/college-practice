@@ -1,10 +1,11 @@
 <?php
 include "conn.php";
+session_start();
 
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
-
+   
     // Search in both admin and user tables
     $admin_sql = "SELECT * FROM admin_tb WHERE username = '$username'";
     $user_sql = "SELECT * FROM user_tb WHERE username = '$username'";
@@ -12,14 +13,14 @@ if (isset($_POST['login'])) {
     $admin_result = $conn->query($admin_sql);
     $user_result = $conn->query($user_sql);
 
-    // Check admin table
     if ($admin_result->num_rows > 0) {
+        // Admin found
         $row = $admin_result->fetch_assoc();
         $hashed_password = $row['password'];
+        $pass_code = $row['pass_code']; 
         $user_type = 'admin';
-    }
-    // Check user table
-    elseif ($user_result->num_rows > 0) {
+    } elseif ($user_result->num_rows > 0) {
+        // User found
         $row = $user_result->fetch_assoc();
         $hashed_password = $row['password'];
         $user_type = 'user';
@@ -33,24 +34,21 @@ if (isset($_POST['login'])) {
 
     // Verify the password
     if (password_verify($password, $hashed_password)) {
-        session_start();
         $_SESSION['username'] = $username;
         $_SESSION['user_type'] = $user_type;
-        if($user_type == 'user'){
+
+        if ($user_type == 'user') {
             echo "<script>
-                    alert('Login successful as $user_type!');
+                    alert('Login successful as user!');
                     window.location.href = '../userindex/userdashboard.html';
                   </script>";
             exit();
-        }
-        else {
-            echo "<script>
-                    alert('Login successful as $user_type!');
-                    window.location.href = '../adminindex/admindashboard.html';
-                  </script>";
+        } else {
+            // Store pass_code in session and redirect admin to passcode entry
+            $_SESSION['pass_code'] = $pass_code;
+            header("Location: pass_code.php");
             exit();
         }
-        exit();
     } else {
         echo "<script>
                 alert('Invalid username or password!');
@@ -59,5 +57,4 @@ if (isset($_POST['login'])) {
         exit();
     }
 }
-
 ?>
