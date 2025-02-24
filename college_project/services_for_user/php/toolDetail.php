@@ -110,7 +110,7 @@
                 echo "<a href='{$tool_link}' class='tool-card'>
                     <img src='../../tools_image/{$row['image']}' alt='Tool Image'>
                     <h3>{$row['name']}</h3>
-                    <p class='price'>Price: \${$row['price']}</p>
+                    <p class='price'>&#8360; {$row['price']}</p>
                 </a>";
                 
             }

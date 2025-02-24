@@ -7,11 +7,18 @@ if (isset($_POST['login'])) {
     $password = $_POST['password'];
    
     // Search in both admin and user tables
-    $admin_sql = "SELECT * FROM admin_tb WHERE username = '$username'";
-    $user_sql = "SELECT * FROM user_tb WHERE username = '$username'";
+    $admin_sql = "SELECT * FROM admin_tb WHERE username = ?";
+    $user_sql = "SELECT * FROM user_tb WHERE username = ?";
 
-    $admin_result = $conn->query($admin_sql);
-    $user_result = $conn->query($user_sql);
+    $stmt_admin = $conn->prepare($admin_sql);
+    $stmt_admin->bind_param("s", $username);
+    $stmt_admin->execute();
+    $admin_result = $stmt_admin->get_result();
+
+    $stmt_user = $conn->prepare($user_sql);
+    $stmt_user->bind_param("s", $username);
+    $stmt_user->execute();
+    $user_result = $stmt_user->get_result();
 
     if ($admin_result->num_rows > 0) {
         // Admin found
@@ -34,8 +41,9 @@ if (isset($_POST['login'])) {
 
     // Verify the password
     if (password_verify($password, $hashed_password)) {
-        $_SESSION['username'] = $username;
+        $_SESSION['username'] = $row['username'];  // Fix: Use correct array
         $_SESSION['user_type'] = $user_type;
+        $_SESSION['user_id'] = $row['id'];  // Fix: Correct user ID variable
 
         if ($user_type == 'user') {
             echo "<script>
