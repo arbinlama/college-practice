@@ -69,7 +69,7 @@
             z-index: 1000;
             align-items: center;
             justify-content: center;
-            background-color: #c2c2c2;
+            background-color:rgb(240, 237, 237);
             height: 7%;
         }
 
@@ -202,7 +202,6 @@
     <nav class="navbar">
         <h2>Daily Price List - <span id="current"></span></h2>
         <ul >
-            <a class='icon1' href="../adminindex/admindashboard.html"><i class="fa fa-home"></i></a>
             <a class='icon' href="../work_of_admin/price_detail/index.html">Insert Price</a>
         </ul>
     </nav>

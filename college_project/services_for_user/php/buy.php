@@ -177,8 +177,9 @@ if (isset($_GET['id'])) {
                 <!-- Prefilled User Information -->
                 <label for="name">Full Name:</label>
                 <input type="text" name="name" value="<?php echo htmlspecialchars($user['username']); ?>" required>
+
                 <label for='user_id'>User_id:</label>
-                <input type="text" name="name" value="<?php echo htmlspecialchars($user['id']); ?>" readonly>
+                <input type="text" name="userid" value="<?php echo htmlspecialchars($user['id']); ?>" readonly>
 
 
                 <label for="contact">Contact Number:</label>
