@@ -128,19 +128,19 @@
             </thead>
             <tbody>
                 <div class="aa">
-                    <a href='insert_news.php'>Insert</a>
+                    <a href='insert_upprogram.php'>Insert</a>
                 </div>
                 <?php
-                $sql = "SELECT * FROM news_tb";
+                $sql = "SELECT * FROM upprogram_tb";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>
-                                <td>{$row['detail']}</td>
+                                <td>{$row['heading']}</td>
                                 <td>{$row['date']}</td>
                                 <td>
-                                   <a id='up' href='update_news.php?id={$row['id']}'>Update</a>
-                                   <a id='del' href='delete_news.php?id={$row['id']}'>Delete</a>
+                                   <a id='up' href='update_upprogram.php?id={$row['id']}'>Update</a>
+                                   <a id='del' href='delete_upprogram.php?id={$row['id']}'>Delete</a>
                                 </td>
                               </tr>";
                     }

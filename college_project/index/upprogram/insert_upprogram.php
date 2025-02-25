@@ -46,21 +46,26 @@
             resize: vertical; /* Allows users to resize the textarea vertically */
         }
 
-        input[type="submit"] {
+        input[type="submit"], button{
             background-color: #4CAF50;
             color: white;
             padding: 12px; /* Increased padding for the submit button */
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            width: 100%;
+            width: fit-content;
             font-size: 16px; /* Increased font size for submit button */
         }
 
-        input[type="submit"]:hover {
-            background-color: #45a049;
+        input[type="submit"]:hover,
+        button:hover {
+            background-color:red;
+            border-radius: 10px;
         }
-
+        a {
+            text-decoration: none;
+            color: white
+        }
         /* Error message style */
         .error {
             color: red;
@@ -78,6 +83,7 @@
         <input type="date" name="date" id="date">
         
         <input type="submit" value="Submit">
+        <button><a href="display.php">Back</a></button>
     </form>
 
     <?php
