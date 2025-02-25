@@ -3,121 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Price Update</title>
     <style>
-    footer {
-  background-color: #fff0db;
-}
-.link_lists h3 {
-  margin-bottom: 10px;
-  color: gray;
-}
-.link_lists ul {
-  list-style: none;
-}
-.link_lists ul li {
-  font-size: 16px;
-  margin-bottom: 5px;
-}
-.news_letter h3 {
-  margin-bottom: 10px;
-  color: gray;
-}
-.news_letter input {
-  padding: 5px 40px;
-  margin-bottom: 10px;
-}
-.footer_container {
-  padding: 30px;
-  display: flex;
-  justify-content: space-between;
-}
-.icon_container {
-  display: flex;
-  gap: 15px;
-  font-size: 32px;
-}
-@media (max-width: 786px) {
-  .hero {
-    flex-direction: column;
-  }
-
-  .hero_image {
-    display: flex;
-    justify-content: center;
-  }
-  .hero_image img {
-    width: 80%;
-  }
-  .hero_content {
-    gap: 10px;
-
-    padding: 0 20px;
-  }
-  .hero_content h1 {
-    font-size: 32px;
-  }
-  .features {
-    flex-direction: column;
-  }
-  .feature {
-    flex-direction: column;
-  }
-  .grid {
-    padding: 10px;
-  }
-  .grid-image {
-    border-radius: 0px;
-  }
-  .footer_container {
-    flex-direction: column;
-  }
-}
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f9f9f9;
+            font-size: 20px;
+        }
+        form {
+            width: 50%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        input[type="submit"], .back-button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            margin-top: 5px;
+            padding: 10px;
+            width: 100%;
+        }
+        .back-button {
+            background-color: yellow;
+            color: black;
+            margin-top: 10px;
+        }
+        .back-button:hover, input[type="submit"]:hover {
+            opacity: 0.9;
+        }
     </style>
 </head>
 <body>
-    <footer>
-        <div class="footer_container container">
-          <div class="footer_logo">
-            <img src="..image/logo.png" alt="logo" />
-          </div>
-          <div class="link_lists">
-            <h3>Main Links</h3>
-            <ul>
-              <li>Order Tracking</li>
-              <li>New Order</li>
-              <li>Contact Us</li>
-              <li>News & Blogs</li>
-            </ul>
-          </div>
-          <div class="link_lists">
-            <h3>Support</h3>
-            <ul>
-              <li>About Us</li>
-              <li>Privacy Policy</li>
-              <li>Terms & Conditons</li>
-            </ul>
-          </div>
-          <div class="news_letter">
-            <h3>Support</h3>
-            <input type="email" placeholder="Enter your Email..." />
-            <h3>Follow Us</h3>
-            <div class="icon_container">
-              <div class="icon">
-                <i class="fa fa-facebook"></i>
-              </div>
-              <div class="icon">
-                <i class="fa fa-twitter" aria-hidden="true"></i>
-              </div>
-              <div class="icon">
-                <i class="fa fa-instagram" aria-hidden="true"></i>
-              </div>
-              <div class="icon">
-                <i class="fa fa-youtube" aria-hidden="true"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+<?php
+include "conn.php";
+
+if (isset($_POST['update'])) {
+    $order_id = $_POST['order_id'];
+    $user_id = $_POST['user_id'];
+    $tool_id = $_POST['tool_id'];
+    $quantity = $_POST['quantity'];
+    $total_price = $_POST['total_price'];
+    $order_date = $_POST['order_date'];
+    $name = $_POST['name'];
+    $address = $_POST['address'];
+    $contact = $_POST['contact'];
+
+    // Ensure the inputs are sanitized to prevent SQL injection
+    $sql = "UPDATE orders SET user_id='$user_id', tool_id='$tool_id', quantity='$quantity', total_price='$total_price', 
+    order_date='$order_date', name='$name', address='$address', contact='$contact' WHERE order_id='$order_id'";
+    $result = $conn->query($sql);
+
+    if ($result === true) {
+        echo "<script>
+            alert('Record updated successfully');
+            window.location.href = '../displayOrder.php';
+        </script>";
+    } else {
+        echo "Error updating record: " . $conn->error;
+    }
+}
+
+if (isset($_GET['order_id'])) {
+    $order_id = intval($_GET['order_id']); // Ensure order_id is an integer
+
+    $sql = "SELECT * FROM orders WHERE order_id = '$order_id'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $tool_id = $row['tool_id'];
+            $user_id = $row['user_id'];
+            $quantity = $row['quantity'];
+            $total_price = $row['total_price'];
+            $order_date = $row['order_date'];
+            $name = $row['name'];
+            $address = $row['address'];
+            $contact = $row['contact'];
+        }
+        ?>
+      
+        <form action="" method="POST">
+            <h2>Price Update Form</h2>
+            <fieldset>
+                <legend>Update Information</legend>
+
+                <input type="hidden" name="order_id" value="<?php echo htmlspecialchars($order_id); ?>">
+
+                <label for="tool_id">Tools Id:</label>
+                <input type="text" name="tool_id" value="<?php echo htmlspecialchars($tool_id); ?>" required>
+                
+                <label for="user_id">User Id:</label>
+                <input type="text" name="user_id" value="<?php echo htmlspecialchars($user_id); ?>" required>
+
+                <label for="quantity">Quantity</label>
+                <input type="text" name="quantity" value="<?php echo htmlspecialchars($quantity); ?>" required>
+
+                <label for="total_price">Total Price</label>
+                <input type="text" name="total_price" value="<?php echo htmlspecialchars($total_price); ?>" required>
+
+                <label for="order_date">Order Date</label>
+                <input type="text" name="order_date" value="<?php echo htmlspecialchars($order_date); ?>" required>
+                
+                <label for="name">Name</label>
+                <input type="text" name="name" value="<?php echo htmlspecialchars($name); ?>" required>
+                
+                <label for="address">Address</label>
+                <input type="text" name="address" value="<?php echo htmlspecialchars($address); ?>" required>
+                
+                <label for="contact">Contact</label>
+                <input type="text" name="contact" value="<?php echo htmlspecialchars($contact); ?>" required>
+                
+                <input type="submit" name="update" value="Update">
+                <a href="../displayOrder.php" class="back-button">Back</a>
+            </fieldset>
+        </form>
+
+    <?php
+    } else {
+        header('location:../displayOrder.php');
+        exit;
+    }
+}
+?>
 </body>
 </html>

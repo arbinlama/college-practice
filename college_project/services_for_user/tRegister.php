@@ -45,35 +45,34 @@
             box-sizing: border-box;
         }
         .buttn {
-         display: flex;
-         justify-content: center;
-         gap: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
         }
         .buttn input {
-          padding: 10px 20px;
-          border-radius: 5px;
-          border: none;
-          font-size: 16px;
-          cursor: pointer;
-          width: fit-content;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            width: fit-content;
         }
         .submit-btn {
-          background-color: #4caf50;
-         color: white;
+            background-color: #4caf50;
+            color: white;
         }
         .back-btn {
-          background-color: black;
-          color: white;
-          margin: 10px;
-          padding: 10px;
-          border-radius: 5px;
-
+            background-color: black;
+            color: white;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
         }
         .submit-btn:hover {
-          background-color: #45a049;
+            background-color: #45a049;
         }
         .back-btn:hover {
-          background-color: #bbb;
+            background-color: #bbb;
         }
         p {
             font-size: 14px;
@@ -108,7 +107,7 @@
             <input type="text" name="lname" id="lname" placeholder="Last Name" required>
             
             <label for="phone">Phone Number:</label>
-            <input type="tel" name="phone" id="phone" placeholder="e.g., +123456789" required>
+            <input type="tel" name="phone" id="phone" placeholder="e.g., 98XXXXXXXX" required>
             
             <label for="country">Your Country Name:</label>
             <input type="text" name="country" id="country" placeholder="Country" required>
@@ -116,18 +115,15 @@
             <label for="zip">Your ZIP Code:</label>
             <input type="text" name="zip" id="zip" placeholder="ZIP Code" required>
             <div class="buttn">
-             <input type="submit" class="submit-btn" value="Submit" name="submit">
-             <button type="button" class="back-btn" onclick="window.history.back();">Back</button>
+                <input type="submit" class="submit-btn" value="Submit" name="submit">
+                <button type="button" class="back-btn" onclick="window.history.back();">Back</button>
             </div>
-
         </div>
     </form>
     <?php 
-
     include "../php/conn.php";
 
-    if(isset($_POST['submit'])) {
-
+    if (isset($_POST['submit'])) {
         $fname = $_POST['fname'];
         $lname = $_POST['lname'];
         $phone = $_POST['phone'];
@@ -136,20 +132,28 @@
         $email = $_POST['email'];
         $training_name = $_POST['tname'];
 
-        $sql = "insert into training_register_tb(first_name, last_name, phone, country, zip, training_name, email) 
-        values 
-        ('$fname', '$lname', '$phone', '$country', '$zip', '$training_name', '$email')";
+        // Email validation
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo "<script>alert('Invalid email format.');</script>";
+            exit; // Stop the execution
+        }
+
+        // Phone number validation (basic example)
+        // Adjust regex pattern according to your phone number format
+        if (!preg_match('/^\+?[0-9]{10,15}$/', $phone)) {
+            echo "<script>alert('Invalid phone number format.');</script>";
+            exit; // Stop the execution
+        }
+
+        $sql = "INSERT INTO training_register_tb(first_name, last_name, phone, country, zip, training_name, email) 
+                VALUES ('$fname', '$lname', '$phone', '$country', '$zip', '$training_name', '$email')";
 
         $result = $conn->query($sql);
 
-        if($result === true) {
-            echo"
-            <script>
-            alert ('You register successfully');
-              window.location.href = 'training.php';
-            </script>";
-        }else {
-            echo 'database error: ' . mysqli_error($conn);
+        if ($result === true) {
+            echo "<script>alert('You registered successfully'); window.location.href = 'training.php';</script>";
+        } else {
+            echo 'Database error: ' . mysqli_error($conn);
         }
     }
     ?>

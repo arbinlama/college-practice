@@ -9,4 +9,7 @@ $conn = new mysqli($servername, $username, $password, $db);
 if ($conn->connect_error) {
     die("Failed to connect to database.");
 } 
+else {
+    echo"successfully connect to the database";
+}
 ?>

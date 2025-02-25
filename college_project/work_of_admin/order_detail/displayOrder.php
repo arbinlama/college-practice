@@ -113,8 +113,8 @@
                                 <td>{$row['contact']}</td>
                                 <td>{$row['order_date']}</td>
                                 <td>
-                                   <a href='../work_of_admin/order_detail/orderUpdate.php?id={$row['order_id']}'>Update</a>
-                                   <a href='../work_of_admin/orders_detail/orderDelete.php?id={$row['order_id']}'>Delete</a>
+                                   <a href='update.php?id={$row['order_id']}'>Update</a>
+                                   <a href='order_delete.php?id={$row['order_id']}'>Delete</a>
                                 </td>
                               </tr>";
                     }
