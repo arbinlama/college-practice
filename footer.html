@@ -1,145 +1,186 @@
+<?php 
+    include "../php/conn.php";
+
+    // Check if the 'id' parameter exists in the URL
+    if (isset($_GET['id'])) {
+        $training_id = htmlspecialchars($_GET['id']);
+
+        // Fetch training details from the database using the training_id
+        $sql = "SELECT * FROM training_tb WHERE id = '$training_id'";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $training_name = $row['heading'];  // You can fetch the appropriate field here
+        } else {
+            echo "<script>alert('Training not found!');</script>";
+            exit;
+        }
+    } else {
+        // If there's no 'id' in the URL, you can redirect the user or show an error
+        echo "<script>alert('Invalid access!'); window.location.href = 'training.php';</script>";
+        exit;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Price Update</title>
+    <title>Register Form</title>
     <style>
-        body {
+         body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             font-family: Arial, Helvetica, sans-serif;
-            background-color: #f9f9f9;
-            font-size: 20px;
+            background-color: #f5f5f5;
         }
-        form {
-            width: 50%;
-            margin: 0 auto;
-            background-color: #fff;
+        .container {
+            background-color: #ffffff;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            opacity: 90%;
+        }
+        .para {
+            margin-top: 10px;
+            font-size: 15px;
+        }
+        h1, h2 {
+            color: #333;
         }
         label {
             display: block;
-            margin-bottom: 8px;
-        }
-        input[type="text"], input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            font-size: 18px;
-            margin-bottom: 15px;
-        }
-        input[type="submit"], .back-button {
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            font-size: 20px;
-            margin-top: 5px;
-            padding: 10px;
-            width: 100%;
-        }
-        .back-button {
-            background-color: yellow;
-            color: black;
             margin-top: 10px;
+            font-weight: bold;
         }
-        .back-button:hover, input[type="submit"]:hover {
-            opacity: 0.9;
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .buttn {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .buttn input {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            width: fit-content;
+        }
+        .submit-btn {
+            background-color: #4caf50;
+            color: white;
+        }
+        .back-btn {
+            background-color: black;
+            color: white;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        .back-btn:hover {
+            background-color: #bbb;
+        }
+        p {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #666;
         }
     </style>
 </head>
 <body>
-<?php
-include "conn.php";
+    <form action="" method="post">
+        <div class="container">
+            <h1>Register for a New Entry Program</h1>
+            <p class='para'>
+                Complete the following form to register for the program of your choice. 
+                You'll receive a confirmation by email — be sure to check your spam folder if you don't see anything. 
+                If you still don't receive a confirmation within two hours of registering,
+                drop us an email at <strong>agrihub@gmail.com</strong> or call us at <strong>+0178-654-6745</strong>.
+            </p>
+            
+            <label for="tname">Training Name:</label>
+            <input type="text" name="tname" id="tname" value="<?php echo $training_name; ?>" placeholder="Enter the training name" required>
 
-if (isset($_POST['update'])) {
-    $order_id = $_POST['order_id'];
-    $user_id = $_POST['user_id'];
-    $tool_id = $_POST['tool_id'];
-    $quantity = $_POST['quantity'];
-    $total_price = $_POST['total_price'];
-    $order_date = $_POST['order_date'];
-    $name = $_POST['name'];
-    $address = $_POST['address'];
-    $contact = $_POST['contact'];
+            <h3>Your Contact Details</h3>
+            <h4>Your Name</h4>
+            
+            <label for="email">Email:</label>
+            <input type="text" name="email" id="email" placeholder="you@example.com" required>
+            
+            <label for="fname">First Name:</label>
+            <input type="text" name="fname" id="fname" placeholder="First Name" required>
+            
+            <label for="lname">Last Name:</label>
+            <input type="text" name="lname" id="lname" placeholder="Last Name" required>
+            
+            <label for="phone">Phone Number:</label>
+            <input type="tel" name="phone" id="phone" placeholder="e.g., 98XXXXXXXX" required>
+            
+            <label for="country">Your Country Name:</label>
+            <input type="text" name="country" id="country" placeholder="Country" required>
+            
+            <label for="zip">Your ZIP Code:</label>
+            <input type="text" name="zip" id="zip" placeholder="ZIP Code" required>
 
-    // Ensure the inputs are sanitized to prevent SQL injection
-    $sql = "UPDATE orders SET user_id='$user_id', tool_id='$tool_id', quantity='$quantity', total_price='$total_price', 
-    order_date='$order_date', name='$name', address='$address', contact='$contact' WHERE order_id='$order_id'";
-    $result = $conn->query($sql);
+            <div class="buttn">
+                <input type="submit" class="submit-btn" value="Submit" name="submit">
+                <button type="button" class="back-btn" onclick="window.history.back();">Back</button>
+            </div>
+        </div>
+    </form>
 
-    if ($result === true) {
-        echo "<script>
-            alert('Record updated successfully');
-            window.location.href = '../displayOrder.php';
-        </script>";
-    } else {
-        echo "Error updating record: " . $conn->error;
-    }
-}
+    <?php 
+    if (isset($_POST['submit'])) {
+        $fname = $_POST['fname'];
+        $lname = $_POST['lname'];
+        $phone = $_POST['phone'];
+        $country = $_POST['country'];
+        $zip = $_POST['zip'];
+        $email = $_POST['email'];
+        $training_name = $_POST['tname'];
 
-if (isset($_GET['order_id'])) {
-    $order_id = intval($_GET['order_id']); // Ensure order_id is an integer
-
-    $sql = "SELECT * FROM orders WHERE order_id = '$order_id'";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $tool_id = $row['tool_id'];
-            $user_id = $row['user_id'];
-            $quantity = $row['quantity'];
-            $total_price = $row['total_price'];
-            $order_date = $row['order_date'];
-            $name = $row['name'];
-            $address = $row['address'];
-            $contact = $row['contact'];
+        // Email validation
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo "<script>alert('Invalid email format.');</script>";
+            exit;
         }
-        ?>
-      
-        <form action="" method="POST">
-            <h2>Price Update Form</h2>
-            <fieldset>
-                <legend>Update Information</legend>
 
-                <input type="hidden" name="order_id" value="<?php echo htmlspecialchars($order_id); ?>">
+        // Phone number validation (basic example)
+        if (!preg_match('/^\+?[0-9]{10,15}$/', $phone)) {
+            echo "<script>alert('Invalid phone number format.');</script>";
+            exit;
+        }
 
-                <label for="tool_id">Tools Id:</label>
-                <input type="text" name="tool_id" value="<?php echo htmlspecialchars($tool_id); ?>" required>
-                
-                <label for="user_id">User Id:</label>
-                <input type="text" name="user_id" value="<?php echo htmlspecialchars($user_id); ?>" required>
+        $sql = "INSERT INTO training_register_tb(first_name, last_name, phone, country, zip, training_name, email) 
+                VALUES ('$fname', '$lname', '$phone', '$country', '$zip', '$training_name', '$email')";
 
-                <label for="quantity">Quantity</label>
-                <input type="text" name="quantity" value="<?php echo htmlspecialchars($quantity); ?>" required>
+        $result = $conn->query($sql);
 
-                <label for="total_price">Total Price</label>
-                <input type="text" name="total_price" value="<?php echo htmlspecialchars($total_price); ?>" required>
-
-                <label for="order_date">Order Date</label>
-                <input type="text" name="order_date" value="<?php echo htmlspecialchars($order_date); ?>" required>
-                
-                <label for="name">Name</label>
-                <input type="text" name="name" value="<?php echo htmlspecialchars($name); ?>" required>
-                
-                <label for="address">Address</label>
-                <input type="text" name="address" value="<?php echo htmlspecialchars($address); ?>" required>
-                
-                <label for="contact">Contact</label>
-                <input type="text" name="contact" value="<?php echo htmlspecialchars($contact); ?>" required>
-                
-                <input type="submit" name="update" value="Update">
-                <a href="../displayOrder.php" class="back-button">Back</a>
-            </fieldset>
-        </form>
-
-    <?php
-    } else {
-        header('location:../displayOrder.php');
-        exit;
+        if ($result === true) {
+            echo "<script>alert('You registered successfully'); window.location.href = 'training.php';</script>";
+        } else {
+            echo 'Database error: ' . mysqli_error($conn);
+        }
     }
-}
-?>
+    ?>
 </body>
 </html>

@@ -1,3 +1,28 @@
+<?php 
+    include "../php/conn.php";
+
+    // Check if the 'id' parameter exists in the URL
+    if (isset($_GET['id'])) {
+        $training_id = htmlspecialchars($_GET['id']);
+
+        // Fetch training details from the database using the training_id
+        $sql = "SELECT * FROM training_tb WHERE id = '$training_id'";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $training_name = $row['heading'];  // You can fetch the appropriate field here
+        } else {
+            echo "<script>alert('Training not found!');</script>";
+            exit;
+        }
+    } else {
+        // If there's no 'id' in the URL, you can redirect the user or show an error
+        echo "<script>alert('Invalid access!'); window.location.href = 'training.php';</script>";
+        exit;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +30,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Form</title>
     <style>
-        body {
+         body {
             margin: 0;
             padding: 0;
             display: flex;
@@ -93,10 +118,11 @@
             </p>
             
             <label for="tname">Training Name:</label>
-            <input type="text" name="tname" id="tname" placeholder="Enter the training name" required>
+            <input type="text" name="tname" id="tname" value="<?php echo $training_name; ?>" placeholder="Enter the training name" required>
+
             <h3>Your Contact Details</h3>
-            
             <h4>Your Name</h4>
+            
             <label for="email">Email:</label>
             <input type="text" name="email" id="email" placeholder="you@example.com" required>
             
@@ -114,15 +140,15 @@
             
             <label for="zip">Your ZIP Code:</label>
             <input type="text" name="zip" id="zip" placeholder="ZIP Code" required>
+
             <div class="buttn">
                 <input type="submit" class="submit-btn" value="Submit" name="submit">
                 <button type="button" class="back-btn" onclick="window.history.back();">Back</button>
             </div>
         </div>
     </form>
-    <?php 
-    include "../php/conn.php";
 
+    <?php 
     if (isset($_POST['submit'])) {
         $fname = $_POST['fname'];
         $lname = $_POST['lname'];
@@ -135,14 +161,13 @@
         // Email validation
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             echo "<script>alert('Invalid email format.');</script>";
-            exit; // Stop the execution
+            exit;
         }
 
         // Phone number validation (basic example)
-        // Adjust regex pattern according to your phone number format
         if (!preg_match('/^\+?[0-9]{10,15}$/', $phone)) {
             echo "<script>alert('Invalid phone number format.');</script>";
-            exit; // Stop the execution
+            exit;
         }
 
         $sql = "INSERT INTO training_register_tb(first_name, last_name, phone, country, zip, training_name, email) 
