@@ -1,4 +1,5 @@
 <?php 
+    session_start();
     include "../php/conn.php";
 
     // Check if the 'id' parameter exists in the URL
@@ -21,6 +22,26 @@
         echo "<script>alert('Invalid access!'); window.location.href = 'training.php';</script>";
         exit;
     }
+
+    // Retrieve user data from the user_tb if a user is logged in (assuming you have a session with user info)
+    if (isset($_SESSION['user_id'])) { 
+        $user_id = $_SESSION['user_id']; // Assuming 'user_id' is stored in the session
+        
+        // Fetch user data from the 'user_tb' table
+        $user_sql = "SELECT * FROM user_tb WHERE id = '$user_id'";
+        $user_result = $conn->query($user_sql);
+
+        if ($user_result->num_rows > 0) {
+            $user_row = $user_result->fetch_assoc();
+            $user_name = $user_row['username'];
+        } else {
+            echo "<script>alert('User not found!');</script>";
+            exit;
+        }
+    } else {
+        echo "<script>alert('Please log in to register.'); window.location.href = '../loginpage/login.php';</script>";
+        exit;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +51,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Form</title>
     <style>
-         body {
+       body {
             margin: 0;
             padding: 0;
             display: flex;
@@ -118,19 +139,17 @@
             </p>
             
             <label for="tname">Training Name:</label>
-            <input type="text" name="tname" id="tname" value="<?php echo $training_name; ?>" placeholder="Enter the training name" required>
+            <input type="text" name="tname" id="tname" value="<?php echo $training_name; ?>"  readonly>
 
             <h3>Your Contact Details</h3>
             <h4>Your Name</h4>
             
             <label for="email">Email:</label>
-            <input type="text" name="email" id="email" placeholder="you@example.com" required>
+            <input type="text" name="email" id="email"  placeholder="you@example.com" required>
             
-            <label for="fname">First Name:</label>
-            <input type="text" name="fname" id="fname" placeholder="First Name" required>
+            <label for="fname">Name:</label>
+            <input type="text" name="fname" id="fname" value="<?php echo $user_name; ?>" placeholder="First Name" readonly>
             
-            <label for="lname">Last Name:</label>
-            <input type="text" name="lname" id="lname" placeholder="Last Name" required>
             
             <label for="phone">Phone Number:</label>
             <input type="tel" name="phone" id="phone" placeholder="e.g., 98XXXXXXXX" required>

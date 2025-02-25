@@ -87,10 +87,9 @@
             <thead>
                 <tr>
                     <th>S.N</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
+                    <th>Name</th>
                     <th>Email</th>
-                    <th>Country</th>
+                    <th>Address</th>
                     <th>Phone</th>
                     <th>ZIP</th>
                     <th>Training Name</th>
@@ -108,7 +107,6 @@
                         echo "<tr>
                             <td>{$sn}</td>
                             <td>{$row['first_name']}</td>
-                            <td>{$row['last_name']}</td>
                             <td>{$row['email']}</td>
                             <td>{$row['country']}</td>
                             <td>{$row['phone']}</td>

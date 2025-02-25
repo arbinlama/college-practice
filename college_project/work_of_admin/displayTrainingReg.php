@@ -87,8 +87,7 @@
             <thead>
                 <tr>
                     <th>S.N</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
+                    <th>Name</th>
                     <th>Email</th>
                     <th>Country</th>
                     <th>Phone</th>
@@ -108,8 +107,7 @@
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>
                             <td>{$sn}</td>
-                            <td>{$row['first_name']}</td>
-                            <td>{$row['last_name']}</td>
+                            <td>{$row['first_name']}</td> 
                             <td>{$row['email']}</td>
                             <td>{$row['country']}</td>
                             <td>{$row['phone']}</td>
