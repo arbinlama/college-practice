@@ -196,6 +196,68 @@
       border-bottom: 1px solid black;
       margin-bottom: 10px;
     }
+    /* Responsive Styles using Media Queries */
+@media (max-width: 768px) {
+  .top p {
+    font-size: 14px;
+  }
+
+  .image-container .text {
+    font-size: 16px;
+    max-width: 200px;
+  }
+
+  .both {
+    width: 90%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .agritool > div {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .bank img {
+    max-width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .top p {
+    font-size: 12px;
+  }
+
+  .image-container .text {
+    font-size: 14px;
+    max-width: 150px;
+  }
+
+  .news ul li {
+    font-size: 16px;
+  }
+
+  .upprog p {
+    font-size: 16px;
+  }
+
+  .account a, .loan a, .insurance a {
+    font-size: 18px;
+  }
+
+  .partner {
+    font-size: 24px;
+  }
+
+  .bank img {
+    max-width: 100px;
+  }
+
+  .bank {
+    flex-direction: column;
+    align-items: center;
+  }
+}
   </style>
 </head>
 <body>
