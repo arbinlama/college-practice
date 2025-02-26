@@ -78,7 +78,6 @@
         if (isset($_POST['update'])) {
             $id = $_POST['id'];
             $fname = $_POST['fname'];
-            $lname = $_POST['lname'];
             $phone = $_POST['phone'];
             $country = $_POST['country'];
             $zip = $_POST['zip'];
@@ -87,7 +86,6 @@
 
             $sql = "UPDATE training_register_tb 
                     SET first_name = '$fname', 
-                        last_name = '$lname',
                         phone = '$phone', 
                         country = '$country',
                         zip = '$zip', 
@@ -118,7 +116,6 @@
                 $row = $result->fetch_assoc();
 
                 $fname = $row['first_name'];
-                $lname = $row['last_name'];
                 $phone = $row['phone'];
                 $country = $row['country'];
                 $zip = $row['zip'];
@@ -132,9 +129,6 @@
 
                         <label for='fname'>First Name</label>
                         <input type="text" name='fname' value="<?php echo $fname; ?>" required>
-
-                        <label for='lname'>Last Name</label>
-                        <input type="text" name='lname' value="<?php echo $lname; ?>" required>
 
                         <label for='phone'>Phone</label>
                         <input type="text" name='phone' value="<?php echo $phone; ?>" required>
