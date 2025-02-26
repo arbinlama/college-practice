@@ -1,33 +1,25 @@
 <?php
 include "conn.php";
-session_start();
 
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
-   
+
     // Search in both admin and user tables
-    $admin_sql = "SELECT * FROM admin_tb WHERE username = ?";
-    $user_sql = "SELECT * FROM user_tb WHERE username = ?";
+    $admin_sql = "SELECT * FROM admin_tb WHERE username = '$username'";
+    $user_sql = "SELECT * FROM user_tb WHERE username = '$username'";
 
-    $stmt_admin = $conn->prepare($admin_sql);
-    $stmt_admin->bind_param("s", $username);
-    $stmt_admin->execute();
-    $admin_result = $stmt_admin->get_result();
+    $admin_result = $conn->query($admin_sql);
+    $user_result = $conn->query($user_sql);
 
-    $stmt_user = $conn->prepare($user_sql);
-    $stmt_user->bind_param("s", $username);
-    $stmt_user->execute();
-    $user_result = $stmt_user->get_result();
-
+    // Check admin table
     if ($admin_result->num_rows > 0) {
-        // Admin found
         $row = $admin_result->fetch_assoc();
         $hashed_password = $row['password'];
-        $pass_code = $row['pass_code']; 
         $user_type = 'admin';
-    } elseif ($user_result->num_rows > 0) {
-        // User found
+    }
+    // Check user table
+    elseif ($user_result->num_rows > 0) {
         $row = $user_result->fetch_assoc();
         $hashed_password = $row['password'];
         $user_type = 'user';
@@ -41,22 +33,24 @@ if (isset($_POST['login'])) {
 
     // Verify the password
     if (password_verify($password, $hashed_password)) {
-        $_SESSION['username'] = $row['username'];  // Fix: Use correct array
+        session_start();
+        $_SESSION['username'] = $username;
         $_SESSION['user_type'] = $user_type;
-        $_SESSION['user_id'] = $row['id'];  // Fix: Correct user ID variable
-
-        if ($user_type == 'user') {
+        if($user_type == 'user'){
             echo "<script>
-                    alert('Login successful as user!');
+                    alert('Login successful as $user_type!');
                     window.location.href = '../userindex/userdashboard.html';
                   </script>";
             exit();
-        } else {
-            // Store pass_code in session and redirect admin to passcode entry
-            $_SESSION['pass_code'] = $pass_code;
-            header("Location: pass_code.php");
+        }
+        else {
+            echo "<script>
+                    alert('Login successful as $user_type!');
+                    window.location.href = '../adminindex/admindashboard.html';
+                  </script>";
             exit();
         }
+        exit();
     } else {
         echo "<script>
                 alert('Invalid username or password!');
@@ -65,4 +59,5 @@ if (isset($_POST['login'])) {
         exit();
     }
 }
+
 ?>

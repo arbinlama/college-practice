@@ -102,3 +102,8 @@ CREATE TABLE orders (
 );
 
 
+create pass code table 
+CREATE TABLE admin_passcode_tb (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    passcode VARCHAR(255) NOT NULL
+);

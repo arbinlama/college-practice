@@ -116,12 +116,13 @@
     </style>
 </head>
 <body>
-
+    <h1>News Detail</h1>
     <div class="tbl">
         <table class="table">
             <thead>
                 <tr>
-                    <th>News</th>
+                    <th>Title</th>
+                    <th>Detail</th>
                     <th>Date</th>
                     <th colspan="2">Action</th>
                 </tr>
@@ -136,6 +137,7 @@
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>
+                                <td>{$row['title']}</td>
                                 <td>{$row['detail']}</td>
                                 <td>{$row['date']}</td>
                                 <td>

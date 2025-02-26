@@ -61,11 +61,11 @@ if ($result->num_rows > 0) {
             background: #007BFF;
             color: white;
             cursor: pointer;
-            border-radius: 5px;
         }
 
         .btn:hover {
-            background: #0056b3;
+            background: red;
+            border-radius: 10px;
         }
 
         .cross {

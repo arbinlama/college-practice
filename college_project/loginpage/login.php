@@ -55,7 +55,7 @@ if ($result->num_rows > 0) {
     <script>
         const crossButton = document.querySelector('.cross');
         crossButton.addEventListener('click', () => {
-            window.location.href = '../index/index.html';
+            window.location.href = '../index/index.php';
         });
     </script>
 </body>

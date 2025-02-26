@@ -78,6 +78,9 @@
     <form action="" method="post">
         <label for="heading">Upcoming training detail</label>
         <textarea name="heading" id="detail" placeholder="Enter the training detail..."></textarea>
+
+        <label for="des">Upcoming training description</label>
+        <textarea name="des" id="detail" placeholder="Enter the training description..."></textarea>
         
         <label for="date">Date</label>
         <input type="date" name="date" id="date">
@@ -89,6 +92,7 @@
     <?php
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $heading = $_POST['heading'];
+        $des = $_POST['des'];
         $date = $_POST['date'];
 
         // Get the current date
@@ -99,7 +103,7 @@
             echo "<p class='error'>Error: The date cannot be in the past.</p>";
         } else {
             // Proceed to insert into database if the date is valid
-            $sql = "INSERT INTO upprogram_tb (heading, date) VALUES ('$heading', '$date')";
+            $sql = "INSERT INTO upprogram_tb (heading, des, date) VALUES ('$heading', '$des', '$date')";
 
             $result = $conn->query($sql);
 

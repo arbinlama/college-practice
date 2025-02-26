@@ -72,6 +72,7 @@
     // Handle update form submission
     if (isset($_POST['update'])) {
         $id = $_POST['id'];
+        $title = $_POST['title'];
         $detail = $_POST['detail'];
         $date = $_POST['date'];
 
@@ -81,7 +82,7 @@
         $date = $conn->real_escape_string($date);
 
         // SQL Update Query
-        $sql = "UPDATE news_tb SET detail = '$detail', date = '$date' WHERE id = '$id'";
+        $sql = "UPDATE news_tb SET title = '$title',detail = '$detail', date = '$date' WHERE id = '$id'";
 
         $result = $conn->query($sql);
 
@@ -116,6 +117,9 @@
                 <h2>Update News Information</h2>
                 <fieldset>
                     <input type="hidden" name="id" value="<?php echo $id; ?>">
+
+                    <label for="title">News title: </label>
+                    <textarea name="title" id="title" required><?php echo htmlspecialchars($row['title']); ?></textarea>
 
                     <label for="detail">News Detail: </label>
                     <textarea name="detail" id="detail" required><?php echo htmlspecialchars($row['detail']); ?></textarea>

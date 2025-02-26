@@ -15,14 +15,14 @@ if (isset($_POST['submit'])) {
         // Clear pass_code from session and redirect to admin dashboard
         unset($_SESSION['pass_code']);
         echo "<script>
-                alert('Login successful as admin!');
-                window.location.href = '../adminindex/admindashboard.html';
+                alert('Register successfully !');
+                window.location.href = '../loginpage/login.php';
               </script>";
         exit();
     } else {
         echo "<script>
-                alert('Invalid passcode!');
-                window.location.href = 'pass_code.php';
+                alert('Invalid pass code !');
+                window.location.href = '../register/reg.php';
               </script>";
         exit();
     }

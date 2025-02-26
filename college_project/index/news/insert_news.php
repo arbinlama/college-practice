@@ -71,17 +71,23 @@
 <body>
     <?php include "conn.php" ?>
     <form action="" method="post">
-        <label for="detail">Place news detail</label>
-        <textarea name="detail" id="detail" placeholder="Enter the news detail..."></textarea>
         
+        <label for="title">News title</label>
+        <textarea name="title" id="title" placeholder="Enter the news detail..."></textarea>
+        
+        <label for="detail">news detail</label>
+        <textarea name="detail" id="detail" placeholder="Enter the news detail..."></textarea>
+
         <label for="date">Date</label>
         <input type="date" name="date" id="date">
         
         <input type="submit" value="Submit">
+        
         <button><a href="display_news.php">Back</a></button>
     </form>
     <?php
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $title = $_POST['title'];
         $detail = $_POST['detail'];
         $date = $_POST['date'];
 
@@ -92,7 +98,7 @@
             echo "<p class='error'>Error: The date cannot be in the past.</p>";
         }else {
 
-            $sql = "insert into news_tb (detail, date) VALUES ('$detail', '$date')";
+            $sql = "insert into news_tb ( title, detail, date) VALUES ('$title','$detail', '$date')";
             $result = $conn->query($sql);
             if($result == true) {
               echo "<script>

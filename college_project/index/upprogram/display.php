@@ -116,12 +116,13 @@
     </style>
 </head>
 <body>
-
+    <h1>Up comming programs Detail</h1>
     <div class="tbl">
         <table class="table">
             <thead>
                 <tr>
-                    <th>News</th>
+                    <th>Title</th>
+                    <th>description</th>
                     <th>Date</th>
                     <th colspan="2">Action</th>
                 </tr>
@@ -136,13 +137,14 @@
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>
-                                <td>{$row['heading']}</td>
-                                <td>{$row['date']}</td>
-                                <td>
-                                   <a id='up' href='update_upprogram.php?id={$row['id']}'>Update</a>
-                                   <a id='del' href='delete_upprogram.php?id={$row['id']}'>Delete</a>
-                                </td>
-                              </tr>";
+                           <td>{$row['heading']}</td>
+                             <td>{$row['des']}</td>
+                            <td>{$row['date']}</td>
+                            <td>
+                             <a id='up' href='update_upprogram.php?id={$row['id']}'>Update</a>
+                             <a id='del' href='delete_upprogram.php?id={$row['id']}'>Delete</a>
+                            </td>
+                        </tr>";
                     }
                 } else {
                     echo "<tr><td colspan='10'>No records found</td></tr>";

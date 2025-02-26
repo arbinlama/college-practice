@@ -1,15 +1,39 @@
+<?php
+include "conn.php";
+
+// Fetch data for news from `news_tb`
+$news_query = "SELECT title, detail, date FROM news_tb";
+$news_result = $conn->query($news_query);
+$news_date = [];
+if ($news_result->num_rows > 0) {
+    while ($row = $news_result->fetch_assoc()) {
+        $news_data[] = $row;
+    }
+}
+
+// Fetch data for upcoming programs from `upprogram_tb`
+$upcoming_query = "SELECT heading, date, des FROM upprogram_tb";
+$upcoming_result = $conn->query($upcoming_query);
+$upcoming_data = [];
+if ($upcoming_result->num_rows > 0) {
+    while ($row = $upcoming_result->fetch_assoc()) {
+        $upcoming_data[] = $row;
+    }
+}
+
+$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>User View</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Font Awesome Link for Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <!-- Add your existing styles here -->
   <link rel="stylesheet" href="index.css">
   <link rel="stylesheet" href="../footer/footer.css">
-  <link rel="icon" href="../image/ficon.png" type="image/x-icon">
   <style>
+    /* Your existing styles here */
     .top {
       display: flex;
       background: #4f4f4f;
@@ -63,47 +87,22 @@
       margin: 10px;
       border-radius: 10px;
       height: 250px;
-
-    }
-    .news {
-      background: rgb(245, 245, 245);
-      height: auto;
-      text-align: left;
-    }
-    .news h1 {
-      text-decoration: underline;
-      padding-left: 20px;
     }
     
-    .news ul li {
-      margin-top: 0;
-      list-style-type: disc;
-      padding-left: 40px;
-      list-style-position: inside;
-      line-height: 1.6;
-      font-size: 18px;
-    }
-    .news ul li ul li {
-      list-style-type: circle;
-    }
-
-    .upprog {
+    .upprog , .news {
       background: rgb(245, 245, 245);
       height: auto;
       text-align: left;
     }
-    .upprog h1 {
+    .upprog h1 , .news h1{
       text-decoration: underline;
       padding-left: 20px;
       margin-bottom: 20px;
     }
-    .upprog p {
+    .upprog p ,.news p {
       padding-left: 40px;
       line-height: 1.6;
       font-size: 18px;
-    }
-    .upprog p strong {
-      padding-right: 50px;
     }
     .thead {
       width: 80%;
@@ -196,68 +195,6 @@
       border-bottom: 1px solid black;
       margin-bottom: 10px;
     }
-    /* Responsive Styles using Media Queries */
-@media (max-width: 768px) {
-  .top p {
-    font-size: 14px;
-  }
-
-  .image-container .text {
-    font-size: 16px;
-    max-width: 200px;
-  }
-
-  .both {
-    width: 90%;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .agritool > div {
-    width: 100%;
-    max-width: 350px;
-  }
-
-  .bank img {
-    max-width: 120px;
-  }
-}
-
-@media (max-width: 480px) {
-  .top p {
-    font-size: 12px;
-  }
-
-  .image-container .text {
-    font-size: 14px;
-    max-width: 150px;
-  }
-
-  .news ul li {
-    font-size: 16px;
-  }
-
-  .upprog p {
-    font-size: 16px;
-  }
-
-  .account a, .loan a, .insurance a {
-    font-size: 18px;
-  }
-
-  .partner {
-    font-size: 24px;
-  }
-
-  .bank img {
-    max-width: 100px;
-  }
-
-  .bank {
-    flex-direction: column;
-    align-items: center;
-  }
-}
   </style>
 </head>
 <body>
@@ -288,18 +225,13 @@
       </div>
     </div>
   </header>
-  
+
   <nav class="navbar-second">
-    <input type="checkbox" id="check">
-    <label for="check" class="checkbtn">
-      <i class="fa fa-bars"></i>
-    </label>
     <div class="logo">
       <img src="../image/ficon.png" alt="Logo">
       <p>AgriHub</p>
     </div>
     <ul>
-      <li><a class="passive" href="../index/index.html">Home</a></li>
       <li><a class='about' href="aboutus.html">About</a></li>
       <li>
         <a class='log' href="../loginpage/login.php">
@@ -308,7 +240,7 @@
       </li>
     </ul>
   </nav>
-  
+
   <div class="con">
     <div class="top">
       <p>Find your state/city's agriculture resources on AgriHub</p>
@@ -324,33 +256,35 @@
     </div>
 
     <div class="both">
+      <div class="news" id="news-section">
+        <h1>Latest News</h1>
+        <?php if (!empty($news_data)): ?>
+          <?php foreach ($news_data as $newsItem): ?>
+              <p><strong><?php echo $newsItem['title']; ?></strong> (<?php echo $newsItem['date']; ?>)</p>
+              <p>- <?php echo $newsItem['detail']; ?></p>
 
-      <div class="news">
-      <h1>News</h1>
-      <ul>
-        <li>Learn about pay my loan feature </li>
-        <li>Find Agriculture data recovery and resources on AgriHub</li>
-        <li>Learn about new farming skill</li>
-        <li>Inflation reducetion Act:
-          <ul type="circle">
-            <li>Assistance for distressed borrowea</li>
-            <li>Assistance for distressed borrowea</li>
-            <li>Assistance for distressed borrowea</li>
-          </ul>
-        </li>
-      </ul>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <p>No news available at the moment.</p>
+        <?php endif; ?>
       </div>
 
-      <div class="upprog">
-        <h1>UpComming programs</h1>
-        <p>This is our upcomming programs</p>
-        <p><strong>Jan 8, 2025 </strong>marketing of form and its cops </p>
-        <p><strong>Jan 51, 2025 </strong> Food safety </p>
+      <div class="upprog" id="upcoming-programs-section">
+        <h1>Upcoming Programs</h1>
+        <?php if (!empty($upcoming_data)): ?>
+          <?php foreach ($upcoming_data as $program): ?>
+            <p><strong><?php echo $program['heading']; ?></strong> - <?php echo $program['date']; ?></p>
+            <p>- <?php echo $program['des']; ?></p>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <p>No upcoming programs available.</p>
+        <?php endif; ?>
       </div>
-
     </div>
-    <div class="thead">
-      <h1>AgriHub Tools</h1>
+  </div>
+
+  <div class="thead">
+      <h1>AgriHub Service</h1>
     </div>
 
     <div class="agritool">
@@ -393,5 +327,6 @@
       .then(data => document.getElementById('footer2').innerHTML = data)
       .catch(error => console.error('Error loading footer:', error));
   </script>
+
 </body>
 </html>

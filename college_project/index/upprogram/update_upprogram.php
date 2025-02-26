@@ -73,10 +73,11 @@
     if (isset($_POST['update'])) {
         $id = $_POST['id'];
         $heading = $_POST['heading'];
+        $des = $_POST['des'];
         $date = $_POST['date'];
 
         // SQL Update Query
-        $sql = "UPDATE upprogram_tb SET heading = '$heading', date = '$date' WHERE id = '$id'";
+        $sql = "UPDATE upprogram_tb SET des = '$des', heading = '$heading', date = '$date' WHERE id = '$id'";
 
         $result = $conn->query($sql);
 
@@ -101,6 +102,7 @@
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $heading = $row['heading'];
+            $des = $row ['des'];
             // Ensure the date is in the correct format for the date input field
             $date = $row['date'];
             $formatted_date = date('Y-m-d', strtotime($date)); // Format the date as YYYY-MM-DD
@@ -113,6 +115,9 @@
 
                     <label for="heading">Training Name: </label>
                     <input type="text" name="heading" id="heading" value="<?php echo $heading; ?>" required>
+
+                    <label for="des">Training description: </label>
+                    <input type="text" name="des" id="des" value="<?php echo $des; ?>" required>
 
                     <label for="date">Date: </label>
                     <input type="date" name="date" value="<?php echo $formatted_date; ?>" required>
