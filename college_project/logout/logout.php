@@ -41,7 +41,7 @@ if ($result->num_rows > 0) {
         // JavaScript to redirect to the index page when the cross button is clicked
         const crossButton = document.querySelector('.cross');
         crossButton.addEventListener('click', () => {
-            window.location.href = "../userindex/userdashboard.html";
+            window.location.href = "../userindex/userdashboard.php";
         });
     </script>
 </body>

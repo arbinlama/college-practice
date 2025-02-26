@@ -43,7 +43,7 @@ if (isset($_POST['login'])) {
         if ($user_type == 'user') {
             echo "<script>
                     alert('Login successful as $user_type!');
-                    window.location.href = '../userindex/userdashboard.html';
+                    window.location.href = '../userindex/userdashboard.php';
                   </script>";
             exit();
         } else {

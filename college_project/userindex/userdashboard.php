@@ -1,3 +1,29 @@
+<?php
+include "conn.php";
+
+// Fetch data for news from `news_tb`
+$news_query = "SELECT title, detail, date FROM news_tb";
+$news_result = $conn->query($news_query);
+$news_date = [];
+if ($news_result->num_rows > 0) {
+    while ($row = $news_result->fetch_assoc()) {
+        $news_data[] = $row;
+    }
+}
+
+// Fetch data for upcoming programs from `upprogram_tb`
+$upcoming_query = "SELECT heading, date, des FROM upprogram_tb";
+$upcoming_result = $conn->query($upcoming_query);
+$upcoming_data = [];
+if ($upcoming_result->num_rows > 0) {
+    while ($row = $upcoming_result->fetch_assoc()) {
+        $upcoming_data[] = $row;
+    }
+}
+
+$conn->close();
+?>
+<!DOC
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -145,44 +171,25 @@
       height: 250px;
 
     }
-    .news {
+    
+
+    .upprog, .news {
       background: rgb(245, 245, 245);
       height: auto;
       text-align: left;
-    }
-    .news h1 {
-      text-decoration: underline;
-      padding-left: 20px;
-    }
-    
-    .news ul li {
-      margin-top: 0;
-      list-style-type: disc;
-      padding-left: 40px;
-      list-style-position: inside;
-      line-height: 1.6;
-      font-size: 18px;
-    }
-    .news ul li ul li {
-      list-style-type: circle;
     }
 
-    .upprog {
-      background: rgb(245, 245, 245);
-      height: auto;
-      text-align: left;
-    }
-    .upprog h1 {
+    .upprog h1, .news h1 {
       text-decoration: underline;
       padding-left: 20px;
       margin-bottom: 20px;
     }
-    .upprog p {
+    .upprog p , .news p {
       padding-left: 40px;
       line-height: 1.6;
       font-size: 18px;
     }
-    .upprog p strong {
+    .upprog p strong  .news p strong {
       padding-right: 50px;
     }
     .thead {
@@ -414,28 +421,31 @@
 
     <div class="line1"></div>
     <div class="both">
-      <div class="news">
-      <h1>News</h1>
-      <ul>
-        <li>Learn about pay my loan feature </li>
-        <li>Find Agriculture data recovery and resources on AgriHub</li>
-        <li>Learn about new farming skill</li>
-        <li>Inflation reducetion Act:
-          <ul type="circle">
-            <li>Assistance for distressed borrowea</li>
-            <li>Assistance for distressed borrowea</li>
-            <li>Assistance for distressed borrowea</li>
-          </ul>
-        </li>
-      </ul>
+      <div class="news" id="news-section">
+        <h1>Latest News</h1>
+        <?php if (!empty($news_data)): ?>
+          <?php foreach ($news_data as $newsItem): ?>
+              <p><strong><?php echo $newsItem['title']; ?></strong> (<?php echo $newsItem['date']; ?>)</p>
+              <p>- <?php echo $newsItem['detail']; ?></p>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <p>No news available at the moment.</p>
+        <?php endif; ?>
       </div>
 
-      <div class="upprog">
-        <h1>UpComming programs</h1>
-        <p>This is our upcomming programs</p>
-        <p><strong>Jan 8, 2025 </strong>marketing of form and its cops </p>
-        <p><strong>Jan 51, 2025 </strong> Food safety </p>
+      <div class="upprog" id="upcoming-programs-section">
+        <h1>Upcoming Programs</h1>
+        <?php if (!empty($upcoming_data)): ?>
+          <?php foreach ($upcoming_data as $program): ?>
+            <p><strong><?php echo $program['heading']; ?></strong> - <?php echo $program['date']; ?></p>
+            <p>- <?php echo $program['des']; ?></p>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <p>No upcoming programs available.</p>
+        <?php endif; ?>
       </div>
+    </div>
+  </div>
 
     </div>
     <div class="thead">

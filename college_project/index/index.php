@@ -262,7 +262,6 @@ $conn->close();
           <?php foreach ($news_data as $newsItem): ?>
               <p><strong><?php echo $newsItem['title']; ?></strong> (<?php echo $newsItem['date']; ?>)</p>
               <p>- <?php echo $newsItem['detail']; ?></p>
-
           <?php endforeach; ?>
         <?php else: ?>
           <p>No news available at the moment.</p>
