@@ -95,7 +95,7 @@
     </style>
 </head>
 <body>
-    <a class="back" href="../../userindex/userdashboard.html">Back</a>
+    <a class="back" href="../../userindex/userdashboard.php">Back</a>
     <h1>Tools Details</h1>
     <div class="tool-container">
         <?php

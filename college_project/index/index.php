@@ -195,6 +195,22 @@ $conn->close();
       border-bottom: 1px solid black;
       margin-bottom: 10px;
     }
+    .news p, .upprog p {
+      max-height: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+    .read-more {
+      color: blue;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .full-text {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -256,29 +272,44 @@ $conn->close();
     </div>
 
     <div class="both">
-      <div class="news" id="news-section">
-        <h1>Latest News</h1>
-        <?php if (!empty($news_data)): ?>
-          <?php foreach ($news_data as $newsItem): ?>
-              <p><strong><?php echo $newsItem['title']; ?></strong> (<?php echo $newsItem['date']; ?>)</p>
-              <p>- <?php echo $newsItem['detail']; ?></p>
-          <?php endforeach; ?>
-        <?php else: ?>
-          <p>No news available at the moment.</p>
-        <?php endif; ?>
-      </div>
+    <div class="news" id="news-section">
+      <h1>Latest News</h1>
+      <?php if (!empty($news_data)): ?>
+        <?php foreach ($news_data as $newsItem): ?>
+            <p><strong><?php echo $newsItem['title']; ?></strong> (<?php echo $newsItem['date']; ?>)</p>
+            <p>
+              <span class="short-text">
+                <?php echo substr($newsItem['detail'], 0, 150); ?>...
+              </span>
+              <span class="full-text" style="display: none;">
+                <?php echo $newsItem['detail']; ?>
+              </span>
+              <span class="read-more" onclick="toggleText(this)">Read More</span>
+            </p>
+        <?php endforeach; ?>
+      <?php else: ?>
+        <p>No news available at the moment.</p>
+      <?php endif; ?>
+    </div>
 
-      <div class="upprog" id="upcoming-programs-section">
-        <h1>Upcoming Programs</h1>
-        <?php if (!empty($upcoming_data)): ?>
-          <?php foreach ($upcoming_data as $program): ?>
-            <p><strong><?php echo $program['heading']; ?></strong> - <?php echo $program['date']; ?></p>
-            <p>- <?php echo $program['des']; ?></p>
-          <?php endforeach; ?>
-        <?php else: ?>
-          <p>No upcoming programs available.</p>
-        <?php endif; ?>
-      </div>
+    <div class="upprog" id="upcoming-programs-section">
+      <h1>Upcoming Programs</h1>
+      <?php if (!empty($upcoming_data)): ?>
+        <?php foreach ($upcoming_data as $program): ?>
+          <p><strong><?php echo $program['heading']; ?></strong> - <?php echo $program['date']; ?></p>
+          <p>
+            <span class="short-text">
+              <?php echo substr($program['des'], 0, 150); ?>...
+            </span>
+            <span class="full-text" style="display: none;">
+              <?php echo $program['des']; ?>
+            </span>
+            <span class="read-more" onclick="toggleText(this)">Read More</span>
+          </p>
+        <?php endforeach; ?>
+      <?php else: ?>
+        <p>No upcoming programs available.</p>
+      <?php endif; ?>
     </div>
   </div>
 
@@ -321,10 +352,25 @@ $conn->close();
   <div id="footer2"></div>
   
   <script>
+    function toggleText(element) {
+      let shortText = element.previousElementSibling.previousElementSibling;
+      let fullText = element.previousElementSibling;
+      
+      if (fullText.style.display === "none") {
+        shortText.style.display = "none";
+        fullText.style.display = "inline";
+        element.innerText = "Read Less";
+      } else {
+        shortText.style.display = "inline";
+        fullText.style.display = "none";
+        element.innerText = "Read More";
+      }
+    }
     fetch("../footer/ifooter.html")
       .then(response => response.text())
       .then(data => document.getElementById('footer2').innerHTML = data)
-      .catch(error => console.error('Error loading footer:', error));
+      .catch(error => console.error('Error loading footer:', error)
+    );
   </script>
 
 </body>
