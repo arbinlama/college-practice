@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+// Redirect if user is not logged in or not an admin
 if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'admin') {
     header("Location: ../loginpage/login.php");
     exit();
@@ -9,20 +10,26 @@ if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'admin') {
 // Check passcode submission
 if (isset($_POST['submit'])) {
     $entered_pass = $_POST['pass'];
-    $correct_pass = $_SESSION['pass_code'];
+    $correct_pass = $_SESSION['pass_code'];  // Get the correct passcode stored in the session
 
-    if ($entered_pass == $correct_pass) {
+    // Debugging: Log both passcodes for comparison
+    error_log("Entered pass: $entered_pass");
+    error_log("Stored pass in session: $correct_pass");
+
+    // Ensure both passcodes are trimmed and compared without extra spaces
+    if (trim($entered_pass) === trim($correct_pass)) {
         // Clear pass_code from session and redirect to admin dashboard
         unset($_SESSION['pass_code']);
         echo "<script>
-                alert('Register successfully !');
-                window.location.href = '../loginpage/login.php';
+                alert('Passcode verified successfully!');
+                window.location.href = '../adminindex/admindashboard.html';  // Redirect to admin dashboard
               </script>";
         exit();
     } else {
+        // Passcode is incorrect
         echo "<script>
-                alert('Invalid pass code !');
-                window.location.href = '../register/reg.php';
+                alert('Invalid passcode! Please try again.');
+                window.location.href = 'pass_code.php';  // Stay on the same page for retry
               </script>";
         exit();
     }
@@ -57,7 +64,7 @@ if (isset($_POST['submit'])) {
             display: block;
             margin-bottom: 10px;
         }
-        input[type="text"], input[type="submit"] {
+        input[type="password"], input[type="submit"] {
             width: 250px;
             padding: 10px;
             font-size: 16px;
@@ -81,7 +88,7 @@ if (isset($_POST['submit'])) {
         <h2>Enter Admin Passcode</h2>
         <form method="POST" action="">
             <label for="pass">Passcode</label>
-            <input type="text" name="pass" required>
+            <input type="password" name="pass" required>
             <input type="submit" name="submit" value="Enter">
         </form>
     </div>
