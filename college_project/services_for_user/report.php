@@ -81,7 +81,7 @@
     <div class="container">
         <div class="top">
             <p class="head">Training Report</p>
-            <a class="back" href="../userindex/userdashboard.html">Back</a>
+            <a class="back" href="../userindex/userdashboard.php">Back</a>
         </div>
         <table class="tbl">
             <thead>

@@ -201,7 +201,7 @@
                 <div class='button-container'>
                    <a href='readMore.php?id=$id' class='btn'>Read More</a>
 
-                    <a href='../userindex/userdashboard.html' class='btn '>Home</a>
+                    <a href='../userindex/userdashboard.php' class='btn '>Home</a>
                 </div>
                 ";
             }

@@ -485,7 +485,7 @@ $conn->close();
       <div class="account">
         <h1>Your Agrihub account</h1>
         <p>Access secure self-service business tools like managing loans viewing farmers records</p>
-        <a href="">Create a new account</a>
+        <a href="../register/reg.php">Create a new account</a>
       </div>
 
       <div class="loan">

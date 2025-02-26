@@ -200,7 +200,7 @@
     <nav class="navbar">
         <h2>Daily Price List - <span id="current"></span></h2>
         <ul>
-            <a href="../../userindex/userdashboard.html"><i class="fa fa-home"></i></a>
+            <a href="../../userindex/userdashboard.php"><i class="fa fa-home"></i></a>
         </ul>
     </nav>
     <div class="tbl">
