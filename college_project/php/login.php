@@ -25,6 +25,7 @@ if (isset($_POST['login'])) {
         $row = $user_result->fetch_assoc();
         $hashed_password = $row['password'];
         $user_type = 'user';
+        $user_id = $row['id'];
         $passcode = null;  // Users don't have a passcode
     } else {
         echo "<script>
@@ -39,6 +40,7 @@ if (isset($_POST['login'])) {
         // Start session
         $_SESSION['username'] = $username;
         $_SESSION['user_type'] = $user_type;
+        $_SESSION['user_id'] = $user_id;
         
         if ($user_type == 'user') {
             echo "<script>
